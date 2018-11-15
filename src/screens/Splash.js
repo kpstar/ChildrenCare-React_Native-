@@ -9,6 +9,9 @@ import { Container } from 'native-base';
 export default class Splash extends Component {
 
     componentDidMount() {
+        setTimeout(()=>{
+            this.props.navigation.navigate('LogInScreen');
+        }, 200)
     }
 
     render() {

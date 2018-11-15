@@ -1,31 +1,61 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  ImageBackground
+  TouchableOpacity,
+  Image,
+  View
 } from 'react-native';
-import { Images } from '../theme';
-import { Container } from 'native-base';
+import { strings } from '../services/i18n';
+import { Images, Colors, FontSizes } from '../theme';
+import { Container, Text } from 'native-base';
 
-export default class Splash extends Component {
-
-    componentDidMount() {
-    }
-
+export default class LogIn extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <ImageBackground source={Images.spalshBk}  style={styles.image} ></ImageBackground>
+                <View>
+                    <Text style={styles.text}>{ strings('login_parent_title.value') }</Text>
+                    {/* <TouchableOpacity onPress={ () => this.onPress('ParentLoginScreen')}> */}
+                    <TouchableOpacity onPress={ () => this.onPress('SplashScreen')}>
+                        <Image
+                            style={styles.button}
+                            source={Images.parent}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    <Text style={styles.text}>{ strings('login_children_title.value') }</Text>
+                    {/* <TouchableOpacity onPress={ () => this.onPress('ChildrenLoginScreen')}> */}
+                    <TouchableOpacity onPress={ () => this.onPress('SplashScreen')}>
+                        <Image
+                            style={styles.button}
+                            source={Images.children}
+                        />
+                    </TouchableOpacity> 
+                </View>                               
             </Container>
         )
+    }
+
+    onPress = (option) => {
+        this.props.navigation.navigate(option);
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'stretch'
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.Red,
     },
-    image: {
-        flex: 1
+    text: {
+        color: Colors.white,
+        textAlign: 'center',
+        margin: 20,
+        fontSize: FontSizes.medium
     },
+    button: {
+        alignItems: 'center',
+    }
 });

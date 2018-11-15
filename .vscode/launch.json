@@ -5,12 +5,14 @@
     
     "version": "0.2.0",
     "configurations":[
+
         {
             "name": "Debug iOS",
             "program": "${workspaceRoot}/.vscode/launchReactNative.js",
             "type": "reactnative",
             "request": "launch",
             "platform": "ios",
+            "target": "iPhone 8 Plus",
             "sourceMaps": true,
             "outDir": "${workspaceRoot}/.vscode/.react"
         }
