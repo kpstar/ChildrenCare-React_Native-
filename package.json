@@ -1,10 +1,11 @@
 {
-  "name": "ChindrenCare",
+  "name": "ChildrenCare",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "ios": "open ios/ChindrenCare.xcworkspace"
   },
   "dependencies": {
     "native-base": "^2.8.1",
