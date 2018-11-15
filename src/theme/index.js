@@ -1,5 +1,6 @@
 import Colors from './colors';
 import Images from './images';
+import globalStyles from './styles';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 
 const FontSizes = {
@@ -10,4 +11,4 @@ const FontSizes = {
     large: responsiveHeight(4.8),//48
 };
 
-export { Colors, Images, FontSizes};
+export { Colors, Images, FontSizes, globalStyles };

@@ -9,7 +9,7 @@ import { StackNavigator } from 'react-navigation';
 
 import LogIn from "./screens/LogIn"
 import Splash from "./screens/Splash"
-// import Parent from "./screens/LoginScreen/Parent"
+import Parent from "./screens/LoginScreen/Parent"
 // import Children from "./screens/LoginScreen/Children"
 // import PhoneNumber from "./screens/VerificationScreen/PhoneNumber"
 // import EmailScreen from "./screens/VerificationScreen/EmailVerification"
@@ -23,7 +23,7 @@ export const PrimaryNav = StackNavigator({
     
     SplashScreen: {screen: Splash},
     LogInScreen: {screen: LogIn},
-    // ParentLoginScreen: {screen: Parent},
+    ParentLoginScreen: {screen: Parent},
     // ChildrenLoginScreen: {screen: Children},
     // PhoneScreen: {screen: PhoneNumber},
     // EmailScreen: {screen: EmailScreen},
