@@ -15,7 +15,6 @@ export default class LogIn extends Component {
             <Container style={styles.container}>
                 <View>
                     <Text style={styles.text}>{ strings('login_parent_title.value') }</Text>
-                    {/* <TouchableOpacity onPress={ () => this.onPress('ParentLoginScreen')}> */}
                     <TouchableOpacity onPress={ () => this.onPress('ParentLoginScreen')}>
                         <Image
                             style={styles.button}
@@ -25,8 +24,7 @@ export default class LogIn extends Component {
                 </View>
                 <View>
                     <Text style={styles.text}>{ strings('login_children_title.value') }</Text>
-                    {/* <TouchableOpacity onPress={ () => this.onPress('ChildrenLoginScreen')}> */}
-                    <TouchableOpacity onPress={ () => this.onPress('SplashScreen')}>
+                    <TouchableOpacity onPress={ () => this.onPress('ChildrenLoginScreen')}>
                         <Image
                             style={styles.button}
                             source={Images.children}
