@@ -12,7 +12,7 @@ import Splash from "./screens/Splash"
 import Parent from "./screens/LoginScreen/Parent"
 // import Children from "./screens/LoginScreen/Children"
 // import PhoneNumber from "./screens/VerificationScreen/PhoneNumber"
-// import EmailScreen from "./screens/VerificationScreen/EmailVerification"
+import EmailScreen from "./screens/LoginScreen/EmailLoginScreen"
 // import ChildrenInfo from "./screens/InfoScreen/ChildrenInfo"
 // import ParentInfo from "./screens/InfoScreen/ParentInfo"
 // import MapScreen from "./screens/MainScreen/MapScreen"
@@ -26,7 +26,7 @@ export const PrimaryNav = StackNavigator({
     ParentLoginScreen: {screen: Parent},
     // ChildrenLoginScreen: {screen: Children},
     // PhoneScreen: {screen: PhoneNumber},
-    // EmailScreen: {screen: EmailScreen},
+    EmailLoginScreen: {screen: EmailScreen},
     // ChildInfoScreen: {screen: ChildrenInfo},
     // ParentInfoScreen: {screen: ParentInfo},
     // MapScreen: {screen: MapScreen},

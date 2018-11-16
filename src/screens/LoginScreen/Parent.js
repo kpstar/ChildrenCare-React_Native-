@@ -26,8 +26,8 @@ export default class Parent extends Component {
     render() {
         const {loginStatus} = this.state;
         return (
-            <Container style={styles.container}>
-                <View style={styles.header}>
+            <Container style={globalStyles.container}>
+                <View style={globalStyles.header}>
                     <TouchableOpacity onPress={this.goBack}>
                         <Image
                             source={ Images.backBtn }
@@ -61,8 +61,7 @@ export default class Parent extends Component {
     }
 
     onEmailLogin() {
-        alert('Email Login');
-        // this.props.navigation.navigate("EmailScreen", {loginStatus: this.state.loginStatus});
+        this.props.navigation.navigate("EmailLoginScreen", {loginStatus: this.state.loginStatus});
     }
 
     onRegisterMode() {
@@ -79,17 +78,6 @@ export default class Parent extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 20,
-    },
-    header: {
-        alignSelf: 'stretch',        
-        height: 40,
-        width: responsiveWidth(100),
-        justifyContent: 'center',
-        backgroundColor: Colors.white,
-    },
     innerBox: {
         marginTop: 0,
         backgroundColor: Colors.Red,
