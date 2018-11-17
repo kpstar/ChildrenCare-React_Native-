@@ -24,6 +24,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>To get the information from QRCode</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To get image file from gallery</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To get information from microphone</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
