@@ -27,7 +27,8 @@ const colors = {
     gray: '#AAAAAA',
     lightGray: '#d3d3d3',
     buttonColor: '#551919',
-    white: "#fff",  
+    white: "#fff",
+    black: '#000',
   };
     
   export default colors;

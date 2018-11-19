@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Text
+  Text,
+  AsyncStorage
 } from 'react-native';
 import { Images, Colors, globalStyles} from '../../theme';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
@@ -16,8 +17,8 @@ export default class EmailLogin extends Component {
     constructor(props){
         super(props)
         this.state = {
-            email: '',
-            password: '',
+            email: 'kpstar.mc@gmail.com',
+            password: 'no touch',
             error: '',
             loading: false,
         }
@@ -47,7 +48,7 @@ export default class EmailLogin extends Component {
                             </Item>
                             <Item floatingLabel>
                                 <Label style={styles.label}>{strings('login_text_password_placeholder.value')}</Label>
-                                <Input secureTextEntry={true} style={styles.input} value={this.state.password} onChangeText={text=>this.setState({password: text})}/>
+                                <Input secureTextEntry={true} style={styles.input} value={this.state.password} onChangeText={text=>this.setState({password: text})} onSubmitEditing={this.onLogin.bind(this)}/>
                             </Item>
                             {this.renderButtonOrSpinner()}                           
                         </View>
@@ -59,7 +60,7 @@ export default class EmailLogin extends Component {
                             </Item>
                             <Item floatingLabel>
                                 <Label style={styles.label}>{strings('login_text_password_placeholder.value')}</Label>
-                                <Input secureTextEntry={true} style={styles.input} value={this.state.password} onChangeText={text=>this.setState({password: text})}/>
+                                <Input secureTextEntry={true} style={styles.input} value={this.state.password} onChangeText={text=>this.setState({password: text})} onSubmitEditing={this.onSignup.bind(this)}/>
                             </Item>
                             {this.renderButtonOrSpinner()}
                         </View> }                        
@@ -85,7 +86,8 @@ export default class EmailLogin extends Component {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => { 
                 this.setState({ error: '', loading: false });
-                alert('successfully signed in');
+                AsyncStorage.setItem('email', email);
+                this.props.navigation.navigate("ParentInfoScreen");
             })
             .catch((error) => {
                 alert(error);
@@ -99,7 +101,7 @@ export default class EmailLogin extends Component {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ error: '', loading: false });
-                alert('successfully created');
+                this.props.navigation.navigate("ParentInfoScreen");
             })
             .catch((error) => {
                 alert(error);

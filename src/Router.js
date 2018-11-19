@@ -14,10 +14,10 @@ import Children from "./screens/LoginScreen/Children"
 // import PhoneNumber from "./screens/VerificationScreen/PhoneNumber"
 import QRCodeScanner from "./screens/QRScreen/QRCodeScanner"
 import EmailScreen from "./screens/LoginScreen/EmailLoginScreen"
-// import ChildrenInfo from "./screens/InfoScreen/ChildrenInfo"
-// import ParentInfo from "./screens/InfoScreen/ParentInfo"
+import ChildrenInfo from "./screens/RegisterScreen/ChildrenInfo"
+import ParentInfo from "./screens/RegisterScreen/ParentInfo"
 // import MapScreen from "./screens/MainScreen/MapScreen"
-// import ParentQRCode from "./screens/InfoScreen/ParentQRCode"
+import QRCodeGenerator from "./screens/QRScreen/QRCodeGenerator"
 // import ChildrenQR from "./screens/InfoScreen/ChildrenQR"
 
 export const PrimaryNav = StackNavigator({
@@ -29,10 +29,10 @@ export const PrimaryNav = StackNavigator({
     // PhoneScreen: {screen: PhoneNumber},
     EmailLoginScreen: {screen: EmailScreen},
     QRCodeScanScreen: {screen: QRCodeScanner},
-    // ChildInfoScreen: {screen: ChildrenInfo},
-    // ParentInfoScreen: {screen: ParentInfo},
+    ChildInfoScreen: {screen: ChildrenInfo},
+    ParentInfoScreen: {screen: ParentInfo},
     // MapScreen: {screen: MapScreen},
-    // ParentQRScreen: {screen: ParentQRCode},
+    QRCodeGenScreen: {screen: QRCodeGenerator},
     // ChildrenQRScreen: {screen: ChildrenQR},
 }, {
     headerMode: 'none',
