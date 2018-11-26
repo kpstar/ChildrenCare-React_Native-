@@ -4,8 +4,8 @@ import {
   StyleSheet,
   Text
 } from 'react-native';
-import { Images, Colors, globalStyles } from '../../theme';
-import { responsiveWidth } from 'react-native-responsive-dimensions'
+import { Images, Colors } from '../../theme';
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, Label } from 'native-base';
 import { strings } from '../../services/i18n';
 
@@ -18,7 +18,7 @@ export default class ParentQRCode extends Component {
         let {qrCodeTxt} = this.props.navigation.state.params;
         alert(qrCodeTxt);
         return (
-            <Container style={globalStyles.container}>
+            <Container style={styles.container}>
                 <Container style={styles.innerBox}>
                     <QRCode
                         value={qrCodeTxt}
@@ -43,24 +43,24 @@ export default class ParentQRCode extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Colors.Red,
+    },
     innerBox: {
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: Colors.Red,
-        marginTop: 60,
     },
     qrCode: {
-        marginTop: 100,
-    },
-    backBtn: {
-        marginLeft: 15,
-        height: 25,
-        width: 30,
+        borderColor: Colors.white,
+        borderWidth: 10,
     },
     button: {
         width: responsiveWidth(80),
         marginLeft: responsiveWidth(10),
         padding: 10,
-        marginTop: 30,
+        marginTop: responsiveHeight(10),
         backgroundColor: Colors.buttonColor,
     },
     text: {

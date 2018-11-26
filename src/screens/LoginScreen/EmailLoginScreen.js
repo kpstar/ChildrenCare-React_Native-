@@ -24,6 +24,10 @@ export default class EmailLogin extends Component {
         }
     }
 
+    async componentDidMount() {
+        let token = await AsyncStorage.getItem('email');
+    }
+
     render() {
         const {navigation} = this.props;
         const loginStatus = navigation.getParam('loginStatus', false);
@@ -84,7 +88,9 @@ export default class EmailLogin extends Component {
         this.setState({ error: '', loading: true, });
         const {email, password} =  this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => { 
+            .then((credential) => {
+                let token = credential.user._user.refreshToken;
+                AsyncStorage.setItem('token', token);
                 this.setState({ error: '', loading: false });
                 AsyncStorage.setItem('email', email);
                 this.props.navigation.navigate("ParentInfoScreen");

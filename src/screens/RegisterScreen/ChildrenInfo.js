@@ -3,10 +3,11 @@ import {
   StyleSheet,
   ImageBackground,
   Text,
+  View,
   AsyncStorage
 } from 'react-native';
 import { Images, Colors, globalStyles } from '../../theme';
-import { responsiveWidth } from 'react-native-responsive-dimensions'
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, Input, Item, Label } from 'native-base';
 import { strings } from '../../services/i18n';
 
@@ -26,18 +27,18 @@ export default class ChildrenInfo extends Component {
 
     render() {
         return (
-            <Container style={globalStyles.container}>
+            <Container style={styles.container}>
                 <ImageBackground source={Images.children}  style={styles.image}></ImageBackground>
-                <Item floatingLabel>
-                    <Label style={styles.label}>{strings('child_name_label_placeholder_title.value')}</Label>
+                <Item floatingLabel style={styles.label}>
+                    <Label style={styles.text}>{strings('child_name_label_placeholder_title.value')}</Label>
                     <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.childName} onChangeText={childNameTxt=>this.setState({childName: childNameTxt})}/>                
                 </Item>
-                <Item floatingLabel>
-                    <Label style={styles.label}>{strings('child_age_label_placeholder_title.value')}</Label>
+                <Item floatingLabel style={styles.label}>
+                    <Label style={styles.text}>{strings('child_age_label_placeholder_title.value')}</Label>
                     <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.age} onChangeText={ageTxt=>this.setState({age: ageTxt})}/>                
                 </Item>
-                <Item floatingLabel>
-                    <Label style={styles.label}>{strings('child_contact_number_label_placeholder_title.value')}</Label>
+                <Item floatingLabel style={styles.label}>
+                    <Label style={styles.text}>{strings('child_contact_number_label_placeholder_title.value')}</Label>
                     <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.contactNumber} onChangeText={contactNumberTxt=>this.setState({contactNumber: contactNumberTxt})}/>                
                 </Item>
                 <Button style={styles.button} onPress={this.generateQR.bind(this)}><Text style={styles.text}>{strings('child_generate_qr_button_title.value')}</Text></Button>
@@ -45,12 +46,19 @@ export default class ChildrenInfo extends Component {
         )
     }
 
-    generateQR() {
+    async generateQR() {
         let {childName, age, contactNumber} = this.state;
-        let email = AsyncStorage.getItem('email');
-        // let email = localStorage.getItem('email');
-        if (!email) {
-            alert('Please insert Email info');
+        let email = await AsyncStorage.getItem('email');
+        let errorKey = '';
+        if (!childName) {
+            errorKey = 'alert_empty_child_name_title.value';
+        } else if (!age) {
+            errorKey = 'alert_empty_child_age_title.value';
+        } else if (!contactNumber) {
+            errorKey = 'alert_empty_child_number_title.value';
+        }
+        if (errorKey) {
+            alert(strings(errorKey));
             return;
         }
         let qrCodeTxt = email + "/" + childName + "/" + age + '/' + contactNumber;
@@ -66,33 +74,33 @@ export default class ChildrenInfo extends Component {
 }
 
 const styles = StyleSheet.create({
-    innerBox: {
-        marginTop: 0,
+    container: {
+        flex: 1,
         backgroundColor: Colors.Red,
         alignItems: 'center',
-        justifyContent: 'center',
     },
     image: {
+        marginTop: responsiveHeight(15),
         width: responsiveWidth(40),
         height: responsiveWidth(40),
         marginBottom: 15
     },
-    view: {
+    label: {
         width: responsiveWidth(80),
     },
     button: {
-        padding: 20,
-        marginTop: 10,
+        width: responsiveWidth(80),
+        left: responsiveWidth(10),
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: responsiveHeight(20),
         backgroundColor: Colors.buttonColor,
     },
-    buttonTwo: {
-        marginTop: 10,
-        marginLeft: 5,
-    },
     text: {
-        color: Colors.black,
+        color: Colors.white,
     },
     input: {
-        color: Colors.black,
+        width: responsiveWidth(80),
+        color: Colors.white,
     },
 });

@@ -84,12 +84,24 @@
         "value": "Notification will be sent to your parents automatically when you reach home!"
     },
     "children_qr_accept_gps_button_title":{
-        "value": "Accepts GPS permission"
+        "value": "Accept GPS permission"
     },
     "main_manually_update_button_title":{
         "value": "Manually Update Location"
     },
-    "main_panic_mode_button_title":{
-        "value": "PANIC MODE"
+    "alert_empty_familyname_text": {
+        "value": "Please insert your family name"
+    },
+    "alert_empty_child_name_title":{
+        "value": "Please insert child name"
+    },
+    "alert_empty_child_age_title":{
+        "value": "Please insert child age"
+    },
+    "alert_empty_child_number_title":{
+        "value": "Please insert emergency contact number"
+    },
+    "alert_empty_home_location":{
+        "value": "Please set your home location"
     }
 }
