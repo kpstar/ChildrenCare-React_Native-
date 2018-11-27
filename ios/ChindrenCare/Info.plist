@@ -30,6 +30,8 @@
 	<string>To get image file from gallery</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>To get information from microphone</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>To get image file from gallery</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

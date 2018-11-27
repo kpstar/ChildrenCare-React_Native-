@@ -14,10 +14,12 @@
     "react-native-camera": "^1.4.1",
     "react-native-dimensions": "0.0.1",
     "react-native-firebase": "^5.1.0",
+    "react-native-fs": "^2.12.1",
     "react-native-i18n": "^2.0.15",
     "react-native-qrcode": "^0.2.7",
     "react-native-qrcode-scanner": "^1.1.0",
     "react-native-responsive-dimensions": "^2.0.1",
+    "react-native-view-shot": "^2.5.0",
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {

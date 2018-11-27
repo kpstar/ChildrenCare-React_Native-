@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import ViewShot from "react-native-view-shot";
 import QRCode from 'react-native-qrcode';
 import {
   StyleSheet,
-  Text
+  Text,
+  CameraRoll
 } from 'react-native';
 import { Images, Colors } from '../../theme';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
@@ -16,16 +18,17 @@ export default class ParentQRCode extends Component {
 
     render() {
         let {qrCodeTxt} = this.props.navigation.state.params;
-        alert(qrCodeTxt);
         return (
             <Container style={styles.container}>
                 <Container style={styles.innerBox}>
-                    <QRCode
-                        value={qrCodeTxt}
-                        size={200}
-                        bgColor='black'
-                        fgColor='white'
-                        style={styles.qrCode}/>
+                    <ViewShot ref="viewShot" options={{ format: "jpg", quality: 0.9 }}>
+                        <QRCode
+                            value={qrCodeTxt}
+                            size={200}
+                            bgColor='black'
+                            fgColor='white'
+                            style={styles.qrCode}/>
+                    </ViewShot>
                     <Label style={styles.label}>{strings('parent_qr_code_desc_title.value')}</Label>
                     <Button block onPress={this.saveToGallery.bind(this)} style={styles.button}><Text style={styles.text}>{strings('parent_qr_save_button_title.value')}</Text></Button>
                 </Container>                
@@ -34,7 +37,18 @@ export default class ParentQRCode extends Component {
     }
 
     saveToGallery() {
-        alert('Save to Gallery');
+        this.refs.viewShot.capture().then(uri => {
+            console.log("do something with ", uri);
+            let promise = CameraRoll.saveToCameraRoll(uri);
+            promise.then(function(result) {
+                console.log(result);
+                alert(result);
+                return result;
+            }).catch(function (error) {
+                alert('Kill KwangHyok');
+            });
+            return;
+        });
     }
 
     goBack = () => {

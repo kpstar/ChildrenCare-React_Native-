@@ -15,6 +15,10 @@ target 'ChindrenCare' do
 
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'RNViewShot', :path => '../node_modules/react-native-view-shot'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'ChindrenCareTests' do
     inherit! :search_paths
     # Pods for testing
