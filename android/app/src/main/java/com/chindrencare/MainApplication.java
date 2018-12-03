@@ -9,6 +9,7 @@ import org.reactnative.camera.RNCameraPackage;
 import com.google.firebase.database.FirebaseDatabase;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import com.airbnb.android.react.maps.MapsPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFirebasePackage(),
             new RNFirebaseMessagingPackage(),
             new RNFirebaseAuthPackage(),
+            new MapsPackage(),
             new RNFSPackage()
       );
     }

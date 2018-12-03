@@ -53,18 +53,18 @@ export default class MapScreen extends Component {
     componentDidMount() {
         return getCurrentLocation().then(position => {
             if (position) {
-            this.setState({
-                region: {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    latitudeDelta: 0.003,
-                    longitudeDelta: 0.003,
-                },
-                x: {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                },
-            });
+                this.setState({
+                    region: {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                        latitudeDelta: 0.003,
+                        longitudeDelta: 0.003,
+                    },
+                    x: {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                    },
+                });
             }
         });
     }

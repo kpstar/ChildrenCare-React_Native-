@@ -139,6 +139,7 @@ android {
 dependencies {
     compile project(':react-native-fs')
     compile project(':react-native-view-shot')
+    implementation project(':react-native-maps')
     compile project(':react-native-camera')
     implementation project(':react-native-firebase')
     implementation fileTree(dir: "libs", include: ["*.jar"])
