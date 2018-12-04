@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     image: {
-        width: responsiveWidth(40),
-        height: responsiveWidth(40),
+        width: responsiveWidth(50),
+        height: responsiveWidth(50),
         marginBottom: 40
     },
     view: {

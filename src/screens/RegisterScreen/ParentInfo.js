@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     image: {
         width: responsiveWidth(40),
         height: responsiveWidth(40),
-        marginTop: 40,
+        marginTop: 20,
         marginBottom: 15
     },
     label: {

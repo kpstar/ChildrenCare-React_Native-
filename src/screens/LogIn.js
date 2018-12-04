@@ -52,11 +52,11 @@ const styles = StyleSheet.create({
         color: Colors.white,
         textAlign: 'center',
         margin: 20,
-        fontSize: FontSizes.medium
+        fontSize: FontSizes.mediumLarge
     },
     button: {
         alignItems: 'center',
-        width: responsiveWidth(40),
-        height: responsiveWidth(40),
+        width: responsiveWidth(50),
+        height: responsiveWidth(50),
     }
 });

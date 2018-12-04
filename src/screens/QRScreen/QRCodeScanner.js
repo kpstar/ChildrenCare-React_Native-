@@ -22,8 +22,9 @@ export default class QRCodeScan extends Component {
         let p_mail = qrCode.split("/")[0];
         if (p_mail.includes("@")) {
             AsyncStorage.setItem('email', p_mail);
-            this.setState({qrCodeScan: true});
+            this.setState({qrCodeScan: true, qrCode: qrCode});
         }
+        return;
     }
 
     constructor(props){
@@ -51,17 +52,18 @@ export default class QRCodeScan extends Component {
                 <Container style={styles.innerBox}>
                     { qrCodeScan ?
                         <View>
-                            <QRCodeScanner
-                                onRead={this.onSuccess.bind(this)} />
-                        </View>
-                        :
-                        <View>
                             <QRCode 
                                 value={qrCode}
                                 size={200}
                                 bgColor='black'
                                 fgColor='white'
+                                style={styles.qrCode}
                             />
+                        </View>
+                        :
+                        <View>
+                            <QRCodeScanner
+                                onRead={this.onSuccess.bind(this)} />
                         </View>
                     }
                 </Container>

@@ -11,6 +11,7 @@
 #import <React/RCTRootView.h>
 #import <Firebase.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "RNFirebaseNotifications.h"
 
 @implementation AppDelegate
 
@@ -21,6 +22,7 @@
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
   
   [FIRApp configure];
+  [RNFirebaseNotifications configure];
   [GMSServices provideAPIKey:@"AIzaSyCSt18J1Rj-7Xx6NHjYlJ-cAXpCyoVbG4U"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
@@ -34,9 +36,13 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   
-  
+  [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
   [self.window makeKeyAndVisible];
   return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+  [[RNFirebaseNotifications instance] didReceiveLocalNotification:notification];
 }
 
 @end
