@@ -50,7 +50,7 @@ export default class EmailLogin extends Component {
                                 <Label style={styles.label}>{strings('login_text_email_placeholder.value')}</Label>
                                 <Input autoCapitalize='none' style={styles.input} autoCorrect={false} value={this.state.email} onChangeText={text=>this.setState({email: text})}/>
                             </Item>
-                            <Item floatingLabel>
+                            <Item floatingLabel style={globalStyles.marginTop}>
                                 <Label style={styles.label}>{strings('login_text_password_placeholder.value')}</Label>
                                 <Input secureTextEntry={true} style={styles.input} value={this.state.password} onChangeText={text=>this.setState({password: text})} onSubmitEditing={this.onLogin.bind(this)}/>
                             </Item>
@@ -62,7 +62,7 @@ export default class EmailLogin extends Component {
                                 <Label style={styles.label}>{strings('login_text_email_placeholder.value')}</Label>
                                 <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.email} onChangeText={text=>this.setState({email: text})}/>
                             </Item>
-                            <Item floatingLabel>
+                            <Item floatingLabel style={globalStyles.marginTop}>
                                 <Label style={styles.label}>{strings('login_text_password_placeholder.value')}</Label>
                                 <Input secureTextEntry={true} style={styles.input} value={this.state.password} onChangeText={text=>this.setState({password: text})} onSubmitEditing={this.onSignup.bind(this)}/>
                             </Item>

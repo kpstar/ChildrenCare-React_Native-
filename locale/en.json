@@ -65,6 +65,12 @@
     "child_age_label_placeholder_title":{
         "value": "Age"
     },
+    "parent_save_qrcode_to_gallery_msg":{
+        "value": "Successfully saved to gallery"
+    },
+    "parent_save_qrcode_to_gallery_alert":{
+        "value": "Error occured to save to gallery"
+    },
     "child_contact_number_label_placeholder_title":{
         "value": "Emergency contact number"
     },

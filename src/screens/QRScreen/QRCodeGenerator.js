@@ -21,7 +21,7 @@ export default class ParentQRCode extends Component {
         return (
             <Container style={styles.container}>
                 <Container style={styles.innerBox}>
-                    <ViewShot ref="viewShot" options={{ format: "jpg", quality: 0.9 }}>
+                    <ViewShot ref="viewShot" options={{ format: "jpg", quality: 1 }}>
                         <QRCode
                             value={qrCodeTxt}
                             size={200}
@@ -38,14 +38,12 @@ export default class ParentQRCode extends Component {
 
     saveToGallery() {
         this.refs.viewShot.capture().then(uri => {
-            console.log("do something with ", uri);
             let promise = CameraRoll.saveToCameraRoll(uri);
             promise.then(function(result) {
-                console.log(result);
-                alert(result);
-                return result;
+                alert(strings('parent_save_qrcode_to_gallery_msg.value'));
+                this.props.navigation.navigate("ParentInfoScreen");
             }).catch(function (error) {
-                alert('Kill KwangHyok');
+                console.log(error);
             });
             return;
         });

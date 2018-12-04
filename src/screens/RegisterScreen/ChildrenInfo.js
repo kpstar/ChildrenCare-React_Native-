@@ -33,11 +33,11 @@ export default class ChildrenInfo extends Component {
                     <Label style={styles.text}>{strings('child_name_label_placeholder_title.value')}</Label>
                     <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.childName} onChangeText={childNameTxt=>this.setState({childName: childNameTxt})}/>                
                 </Item>
-                <Item floatingLabel style={styles.label}>
+                <Item floatingLabel style={styles.label1}>
                     <Label style={styles.text}>{strings('child_age_label_placeholder_title.value')}</Label>
                     <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.age} onChangeText={ageTxt=>this.setState({age: ageTxt})}/>                
                 </Item>
-                <Item floatingLabel style={styles.label}>
+                <Item floatingLabel style={styles.label1}>
                     <Label style={styles.text}>{strings('child_contact_number_label_placeholder_title.value')}</Label>
                     <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.contactNumber} onChangeText={contactNumberTxt=>this.setState({contactNumber: contactNumberTxt})}/>                
                 </Item>
@@ -88,12 +88,16 @@ const styles = StyleSheet.create({
     label: {
         width: responsiveWidth(80),
     },
+    label1: {
+        width: responsiveWidth(80),
+        marginTop: 10,
+    },
     button: {
         width: responsiveWidth(80),
         left: responsiveWidth(10),
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: responsiveHeight(20),
+        marginTop: responsiveHeight(10),
         backgroundColor: Colors.buttonColor,
     },
     text: {

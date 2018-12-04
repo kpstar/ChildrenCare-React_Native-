@@ -3,10 +3,12 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  AsyncStorage,
   Text,
   Linking,
 } from 'react-native';
 import { Images, Colors, globalStyles } from '../../theme';
+import QRCode from 'react-native-qrcode';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, View } from 'native-base';
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -16,13 +18,19 @@ import images from '../../theme/images';
 export default class QRCodeScan extends Component {
 
     onSuccess(e) {
-        console.log('Result = ', e);
+        let qrCode = e.data;
+        let p_mail = qrCode.split("/")[0];
+        if (p_mail.includes("@")) {
+            AsyncStorage.setItem('email', p_mail);
+            this.setState({qrCodeScan: true});
+        }
     }
 
     constructor(props){
         super(props)
         this.state = {
             qrCodeScan: false,
+            qrCode: '',
         }
     }
 
@@ -30,7 +38,7 @@ export default class QRCodeScan extends Component {
     }
 
     render() {
-        const {qrCodeScan} = this.state;
+        const {qrCodeScan, qrCode} = this.state;
         return (
             <Container style={globalStyles.container}>
                 <View style={globalStyles.header}>
@@ -41,10 +49,21 @@ export default class QRCodeScan extends Component {
                     </TouchableOpacity>
                 </View>
                 <Container style={styles.innerBox}>
-                    <QRCodeScanner
-                        style= {styles.qrCode}
-                        onRead={this.onSuccess.bind(this)}
-                    />
+                    { qrCodeScan ?
+                        <View>
+                            <QRCodeScanner
+                                onRead={this.onSuccess.bind(this)} />
+                        </View>
+                        :
+                        <View>
+                            <QRCode 
+                                value={qrCode}
+                                size={200}
+                                bgColor='black'
+                                fgColor='white'
+                            />
+                        </View>
+                    }
                 </Container>
             </Container>
         )

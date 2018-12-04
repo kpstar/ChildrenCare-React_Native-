@@ -8,6 +8,7 @@ import {
 import { strings } from '../services/i18n';
 import { Images, Colors, FontSizes } from '../theme';
 import { Container, Text } from 'native-base';
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 
 export default class LogIn extends Component {
     render() {
@@ -55,5 +56,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
+        width: responsiveWidth(40),
+        height: responsiveWidth(40),
     }
 });
