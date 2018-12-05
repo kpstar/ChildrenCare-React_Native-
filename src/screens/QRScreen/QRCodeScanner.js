@@ -7,7 +7,7 @@ import {
   Text,
   Linking,
 } from 'react-native';
-import { Images, Colors, globalStyles } from '../../theme';
+import { Images, Colors, globalStyles, FontSizes } from '../../theme';
 import QRCode from 'react-native-qrcode';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, View } from 'native-base';
@@ -35,6 +35,10 @@ export default class QRCodeScan extends Component {
         }
     }
 
+    acceptGPS = () => {
+        alert('Accept GPS Permission');
+    }
+
     componentDidMount() {
     }
 
@@ -51,19 +55,28 @@ export default class QRCodeScan extends Component {
                 </View>
                 <Container style={styles.innerBox}>
                     { qrCodeScan ?
-                        <View>
+                        <View style={styles.scannedView}>
                             <QRCode 
                                 value={qrCode}
-                                size={200}
+                                size={responsiveWidth(70)}
                                 bgColor='black'
                                 fgColor='white'
                                 style={styles.qrCode}
                             />
+                            <Image source={Images.success} style={styles.image} />
+                            <Text style={styles.scanText}>{ strings('children_qr_scan_complete_button_title.value') }</Text>
+                            <Text style={styles.descText}>{ strings('children_qr_description_label_title.value') }</Text>
+                            <Button style={styles.button} onPress={this.acceptGPS.bind(this)}><Text style={styles.text}>{strings('children_qr_accept_gps_button_title.value')}</Text></Button>
                         </View>
                         :
                         <View>
                             <QRCodeScanner
-                                onRead={this.onSuccess.bind(this)} />
+                                showMarker
+                                onRead={this.onSuccess.bind(this)}
+                                bottomContent={
+                                    <Text style={styles.descScanText}>{ strings('children_scan_description_text.value') }</Text>
+                                }
+                            />
                         </View>
                     }
                 </Container>
@@ -79,12 +92,44 @@ export default class QRCodeScan extends Component {
 const styles = StyleSheet.create({
     innerBox: {
         marginTop: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: Colors.Red,
     },
-    qrCode: {
-        marginTop: 20,
-        marginLeft: responsiveWidth(5),
-        marginRight: responsiveWidth(5),
-        marginBottom: 15,
+    scannedView: {
+        alignItems: 'center',
+        width: responsiveWidth(80),
+        marginTop: 30,
     },
+    image: {
+        width: 40,
+        height: 40,
+        marginTop: 10
+    },
+    scanText: {
+        fontSize: FontSizes.medium,
+        color: Colors.white,
+        marginTop: 10
+    },
+    descScanText: {
+        fontSize: FontSizes.medium,
+        marginTop: 20,
+        color: Colors.white
+    },
+    descText: {
+        marginTop: 20,
+        textAlign: 'center',
+        fontSize: FontSizes.smallMedium,
+        color: Colors.white
+    },
+    button: {
+        marginTop: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: responsiveWidth(80)
+    },
+    text: {
+        color: Colors.white,
+        fontSize: FontSizes.medium
+    }
 });

@@ -24,7 +24,7 @@ export default class ParentQRCode extends Component {
                     <ViewShot ref="viewShot" options={{ format: "jpg", quality: 1 }}>
                         <QRCode
                             value={qrCodeTxt}
-                            size={200}
+                            size={responsiveWidth(70)}
                             bgColor='black'
                             fgColor='white'
                             style={styles.qrCode}/>

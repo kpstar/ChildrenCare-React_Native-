@@ -89,6 +89,7 @@ export default class EmailLogin extends Component {
         const {email, password} =  this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((credential) => {
+                console.log('Firebase credential = ', credential);
                 let token = credential.user._user.refreshToken;
                 AsyncStorage.setItem('token', token);
                 this.setState({ error: '', loading: false });

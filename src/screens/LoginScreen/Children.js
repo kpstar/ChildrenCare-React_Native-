@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   Text
 } from 'react-native';
-import { Images, Colors, globalStyles } from '../../theme';
-import { responsiveWidth } from 'react-native-responsive-dimensions'
+import { Images, Colors, globalStyles, FontSizes } from '../../theme';
+import { responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions'
 import { Container, Button, View } from 'native-base';
 import { strings } from '../../services/i18n';
 
@@ -68,11 +68,8 @@ const styles = StyleSheet.create({
         marginRight: responsiveWidth(10),
         backgroundColor: Colors.buttonColor,
     },
-    buttonTwo: {
-        marginTop: 10,
-        marginLeft: 5,
-    },
     text: {
         color: Colors.white,
+        fontSize: FontSizes.medium,
     },
 });

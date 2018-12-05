@@ -30,7 +30,7 @@
         "value": "Scan QR"
     },
     "login_button_library_title":{
-        "value": "Login with library"
+        "value": "Scan from Gallery"
     },
     "mobile_number_text_placeholder":{
         "value": "Enter mobile number"
@@ -85,6 +85,9 @@
     },
     "children_qr_scan_complete_button_title":{
         "value": "Scan complete"
+    },
+    "children_scan_description_text":{
+        "value": "Please Scan QRCode"
     },
     "children_qr_description_label_title":{
         "value": "Notification will be sent to your parents automatically when you reach home!"
