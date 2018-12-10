@@ -112,5 +112,26 @@
     },
     "alert_empty_home_location":{
         "value": "Please set your home location"
+    },
+    "drawer_menu_home":{
+        "value": "Home"
+    },
+    "drawer_menu_map":{
+        "value": "Map"
+    },
+    "drawer_menu_logout":{
+        "value": "Log out"
+    },
+    "drawer_menu_logout_title":{
+        "value": "Are you sure ?"
+    },
+    "drawer_menu_logout_description":{
+        "value": "Are you sure to log out ?"
+    },
+    "drawer_menu_logout_yes":{
+        "value": "Yes"
+    },
+    "drawer_menu_logout_no":{
+        "value": "No"
     }
 }

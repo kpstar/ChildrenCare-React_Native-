@@ -37,11 +37,12 @@ export default class ParentQRCode extends Component {
     }
 
     saveToGallery() {
+        let self = this;
         this.refs.viewShot.capture().then(uri => {
             let promise = CameraRoll.saveToCameraRoll(uri);
             promise.then(function(result) {
                 alert(strings('parent_save_qrcode_to_gallery_msg.value'));
-                this.props.navigation.navigate("ParentInfoScreen");
+                self.props.navigation.navigate("ParentInfoScreen");
             }).catch(function (error) {
                 console.log(error);
             });

@@ -5,6 +5,7 @@ const images = {
     backBtn: require('../images/backBtn.png'),
     menuBtn: require('../images/menu.png'),
     success: require('../images/success.png'),
+    profile: require('../images/logo_profile.jpg'),
 }
 
 export default images;

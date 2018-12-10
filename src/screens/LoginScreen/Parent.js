@@ -15,7 +15,7 @@ export default class Parent extends Component {
     constructor(props){
         super(props)
         this.state = {
-            loginStatus: false,
+            loginStatus: true,
         }
 
     }

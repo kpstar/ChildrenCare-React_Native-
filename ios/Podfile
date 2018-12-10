@@ -49,6 +49,8 @@ target 'ChindrenCare' do
   pod 'Firebase/Messaging', '~> 5.11.0'
 
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'ChindrenCareTests' do
     inherit! :search_paths
     # Pods for testing

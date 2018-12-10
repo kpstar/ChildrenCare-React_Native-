@@ -16,6 +16,7 @@ export default class ParentInfo  extends Component {
         super(props);
         this.state = {
             familyName: '',
+            setMyHome: false,
         };
     }
 
@@ -33,7 +34,7 @@ export default class ParentInfo  extends Component {
                     <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.familyName} onChangeText={(text) => this.setState({familyName: text})}/>                
                 </Item>
                 <Button style={styles.button} onPress={this.setMyHome.bind(this)}><Text style={styles.text}>{strings('parent_set_home_button_title.value')}</Text></Button>
-                <ImageBackground source={Images.children}  style={styles.image}></ImageBackground>
+                <ImageBackground source={Images.children}  style={styles.imageTwo}></ImageBackground>
                 <Button style={styles.buttonTwo} onPress={this.addMyChildren.bind(this)}><Text style={styles.text}>{strings('parent_add_children_button_title.value')}</Text></Button>
             </Container>
         )
@@ -73,7 +74,13 @@ const styles = StyleSheet.create({
     image: {
         width: responsiveWidth(40),
         height: responsiveWidth(40),
-        marginTop: 20,
+        marginTop: 0,
+        marginBottom: 15
+    },
+    imageTwo: {
+        width: responsiveWidth(40),
+        height: responsiveWidth(40),
+        marginTop: 40,
         marginBottom: 15
     },
     label: {

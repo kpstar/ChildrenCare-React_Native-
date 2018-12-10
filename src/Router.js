@@ -4,8 +4,15 @@
  * @flow
  */
 
+import React, { Component } from 'react';
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View, } from 'react-native';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { StackNavigator } from 'react-navigation';
+import Menu from "./Menu";
+import {Colors, Images} from './theme';
+
+const { width } = Dimensions.get('window');
 
 import LogIn from "./screens/LogIn"
 import Splash from "./screens/Splash"
@@ -20,7 +27,78 @@ import MapScreen from "./screens/MainScreen/MapScreen"
 import QRCodeGenerator from "./screens/QRScreen/QRCodeGenerator"
 // import ChildrenQR from "./screens/InfoScreen/ChildrenQR"
 
-export const PrimaryNav = StackNavigator({
+const HeaderTitle = () => {
+    return (
+        <Image 
+            source={Images.success} 
+            style={{width: 40, height: 40, resizeMode: 'contain', flex: 1}}
+        />
+    );
+}
+
+const headerStyle = { 
+    backgroundColor: Colors.Red,
+    shadowRadius: 0,
+    borderBottomWidth: 0,
+    shadowOffset: {
+        height: 0,
+    },
+    shadowColor: Colors.Red,
+    height: 50, 
+}
+
+const MenuIcon = ({ openDrawer }) => {
+    return (
+        <TouchableOpacity
+            onPress={() => openDrawer()}
+        >
+            <Icon name="bars" size={32} color={Colors.white} style={{marginLeft: 10}}/>
+        </TouchableOpacity>
+    );
+}
+
+const EmptyIcon = ({ navigate }) => {
+    return (
+        <View style={{width: 32, height: 32}}/>
+    );
+}
+
+export const ParentInfoStack = createStackNavigator({
+    ParentInfoScreen: { 
+        screen: ParentInfo, 
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: headerStyle,
+            headerLeft: <MenuIcon {...navigation} />,
+            headerRight: <EmptyIcon/>
+        }),
+    },
+});
+
+export const MapScreenStack = createStackNavigator({
+    MapScreen: { 
+        screen: MapScreen, 
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: headerStyle,
+            headerLeft: <MenuIcon {...navigation} />,
+            headerRight: <EmptyIcon/>
+        }),
+    },
+});
+
+
+export const DrawerStack = createDrawerNavigator(
+    {
+        ParentInfoStack: {screen: ParentInfoStack},
+        MapScreenStack: {screen: MapScreenStack},
+    },
+    {
+        drawerWidth: width * 2 / 3,
+        drawerPosition: 'left',
+        contentComponent: props => <Menu {...props} />
+    }
+);
+
+export const PrimaryNav = createStackNavigator({
     
     SplashScreen: {screen: Splash},
     LogInScreen: {screen: LogIn},
@@ -30,10 +108,13 @@ export const PrimaryNav = StackNavigator({
     EmailLoginScreen: {screen: EmailScreen},
     QRCodeScanScreen: {screen: QRCodeScanner},
     ChildInfoScreen: {screen: ChildrenInfo},
-    ParentInfoScreen: {screen: ParentInfo},
-    MapScreen: {screen: MapScreen},
+    DrawerStack: {screen: DrawerStack},
     QRCodeGenScreen: {screen: QRCodeGenerator},
+
     // ChildrenQRScreen: {screen: ChildrenQR},
 }, {
+    navigationOptions: {
+        gesturesEnabled: false,
+    },
     headerMode: 'none',
 })
