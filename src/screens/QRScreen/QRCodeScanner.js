@@ -36,7 +36,9 @@ export default class QRCodeScan extends Component {
     }
 
     acceptGPS = () => {
-        alert('Accept GPS Permission');
+        this.props.navigation.navigation(
+            "MapScreen", {qrCode: this.state.qrCode}
+        );
     }
 
     componentDidMount() {

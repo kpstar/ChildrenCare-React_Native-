@@ -16,6 +16,8 @@ export default class MapScreen extends Component {
 
     render() {
         let self = this;
+        let {navigation} = this.props;
+        let canDraggable = navigation.getParams('setHome', false);
         return (
             <MapView
                 provider={PROVIDER_GOOGLE}
@@ -28,7 +30,7 @@ export default class MapScreen extends Component {
                 }}
                 onRegionChange={() => this.onRegionChange.bind(this)}
                 region={this.state.region}>     
-                <Marker draggable
+                <Marker draggable={canDraggable}
                     coordinate={this.state.x}
                     onDragEnd={(e) => this.setState({ x: e.nativeEvent.coordinate })} >
                 </Marker>

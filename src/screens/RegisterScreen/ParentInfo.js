@@ -56,7 +56,7 @@ export default class ParentInfo  extends Component {
     }
 
     setMyHome() {
-        // this.props.navigation.navigate('MapScreen');
+        this.props.navigation.navigate('MapScreen', {setHome: true});
     }
 
     goBack = () => {
