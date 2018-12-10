@@ -15,6 +15,8 @@
 
 @implementation AppDelegate
 
+NSString *const kGCMMessageIDKey = @"gcm.message_id";
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
@@ -22,6 +24,29 @@
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
   
   [FIRApp configure];
+  [FIRMessaging messaging].delegate = self;
+  
+  if ([UNUserNotificationCenter class] != nil) {
+    // iOS 10 or later
+    // For iOS 10 display notification (sent via APNS)
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert |
+    UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
+    [[UNUserNotificationCenter currentNotificationCenter]
+     requestAuthorizationWithOptions:authOptions
+     completionHandler:^(BOOL granted, NSError * _Nullable error) {
+       // ...
+     }];
+  } else {
+    // iOS 10 notifications aren't available; fall back to iOS 8-9 notifications.
+    UIUserNotificationType allNotificationTypes =
+    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings =
+    [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [application registerUserNotificationSettings:settings];
+  }
+  
+  [application registerForRemoteNotifications];
   [RNFirebaseNotifications configure];
   [GMSServices provideAPIKey:@"AIzaSyCSt18J1Rj-7Xx6NHjYlJ-cAXpCyoVbG4U"];
 
@@ -43,6 +68,53 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
   [[RNFirebaseNotifications instance] didReceiveLocalNotification:notification];
+}
+
+- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
+  NSLog(@"FCM registration token: %@", fcmToken);
+  // Notify about received token.
+  NSDictionary *dataDict = [NSDictionary dictionaryWithObject:fcmToken forKey:@"token"];
+  [[NSNotificationCenter defaultCenter] postNotificationName:
+   @"FCMToken" object:nil userInfo:dataDict];
+  // TODO: If necessary send token to application server.
+  // Note: This callback is fired at each app startup and whenever a new token is generated.
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+  // If you are receiving a notification message while your app is in the background,
+  // this callback will not be fired till the user taps on the notification launching the application.
+  // TODO: Handle data of notification
+  
+  // With swizzling disabled you must let Messaging know about the message, for Analytics
+  // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+  
+  // Print message ID.
+  if (userInfo[kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
+  
+  // Print full message.
+  NSLog(@"%@", userInfo);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  // If you are receiving a notification message while your app is in the background,
+  // this callback will not be fired till the user taps on the notification launching the application.
+  // TODO: Handle data of notification
+  
+  // With swizzling disabled you must let Messaging know about the message, for Analytics
+  // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+  
+  // Print message ID.
+  if (userInfo[kGCMMessageIDKey]) {
+    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
+  }
+  
+  // Print full message.
+  NSLog(@"%@", userInfo);
+  
+  completionHandler(UIBackgroundFetchResultNewData);
 }
 
 @end

@@ -4,6 +4,7 @@ import {Colors, Images, FontSizes} from './theme';
 import { Container, Content, Button, Icon, Form, Item, Label, Input, Text, List, ListItem} from 'native-base';
 import { strings } from './services/i18n';
 import { StackActions, NavigationActions } from 'react-navigation';
+import { responsiveWidth } from 'react-native-responsive-dimensions';
 
 export default class Menu extends Component {
     goto(key){
@@ -20,8 +21,8 @@ export default class Menu extends Component {
                             style={{width: 120, height: 120, resizeMode: 'cover', borderRadius: 60}}
                         />
                     </View>
-                    <List>
-                        <ListItem onPress={()=>{this.goto('ParentInfoStack')}}>
+                    <List style={styles.list}>
+                        <ListItem style={styles.listBack} onPress={()=>{this.goto('ParentInfoStack')}}>
                             <Text style={styles.listItem}>{strings('drawer_menu_home.value')}</Text>
                         </ListItem>
                         <ListItem onPress={()=>{this.goto('MapScreenStack')}}>
@@ -66,10 +67,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 200,
     },
+    list: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     listItem: {
         textAlign: 'center',
         color: Colors.white,
+        width: responsiveWidth(55),
         fontSize: FontSizes.medium,
+    },
+    listBack: {
+        backgroundColor: 'rgba(255,255,255,0.5)',
     },
     logoText: {
         fontSize: 24,
