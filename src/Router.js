@@ -10,6 +10,7 @@ import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Menu from "./Menu";
+import ChildMenu from "./ChildMenu";
 import {Colors, Images} from './theme';
 
 const { width } = Dimensions.get('window');
@@ -24,17 +25,9 @@ import EmailScreen from "./screens/LoginScreen/EmailLoginScreen"
 import ChildrenInfo from "./screens/RegisterScreen/ChildrenInfo"
 import ParentInfo from "./screens/RegisterScreen/ParentInfo"
 import MapScreen from "./screens/MainScreen/MapScreen"
+import EmergencyScreen from "./screens/MainScreen/Emergency"
 import QRCodeGenerator from "./screens/QRScreen/QRCodeGenerator"
 // import ChildrenQR from "./screens/InfoScreen/ChildrenQR"
-
-const HeaderTitle = () => {
-    return (
-        <Image 
-            source={Images.success} 
-            style={{width: 40, height: 40, resizeMode: 'contain', flex: 1}}
-        />
-    );
-}
 
 const headerStyle = { 
     backgroundColor: Colors.Red,
@@ -85,6 +78,16 @@ export const MapScreenStack = createStackNavigator({
     },
 });
 
+export const ChildInfoStack = createStackNavigator({
+    MapScreen: { 
+        screen: ChildrenInfo, 
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: headerStyle,
+            headerLeft: <MenuIcon {...navigation} />,
+            headerRight: <EmptyIcon/>
+        }),
+    },
+});
 
 export const DrawerStack = createDrawerNavigator(
     {
@@ -98,6 +101,18 @@ export const DrawerStack = createDrawerNavigator(
     }
 );
 
+export const ChildDrawerStack = createDrawerNavigator(
+    {
+        ChildInfoStack: {screen: ChildInfoStack},
+        MapScreenStack: {screen: MapScreenStack},
+    },
+    {
+        drawerWidth: width * 2 / 3,
+        drawerPosition: 'left',
+        contentComponent: props => <ChildMenu {...props} />
+    }
+);
+
 export const PrimaryNav = createStackNavigator({
     
     SplashScreen: {screen: Splash},
@@ -107,7 +122,7 @@ export const PrimaryNav = createStackNavigator({
     // PhoneScreen: {screen: PhoneNumber},
     EmailLoginScreen: {screen: EmailScreen},
     QRCodeScanScreen: {screen: QRCodeScanner},
-    ChildInfoScreen: {screen: ChildrenInfo},
+    ChildDrawerStack: {screen: ChildDrawerStack},
     DrawerStack: {screen: DrawerStack},
     QRCodeGenScreen: {screen: QRCodeGenerator},
 

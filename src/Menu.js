@@ -22,7 +22,7 @@ export default class Menu extends Component {
                         />
                     </View>
                     <List style={styles.list}>
-                        <ListItem style={styles.listBack} onPress={()=>{this.goto('ParentInfoStack')}}>
+                        <ListItem onPress={()=>{this.goto('ParentInfoStack')}}>
                             <Text style={styles.listItem}>{strings('drawer_menu_home.value')}</Text>
                         </ListItem>
                         <ListItem onPress={()=>{this.goto('MapScreenStack')}}>

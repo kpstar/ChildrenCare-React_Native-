@@ -15,9 +15,8 @@ export const getCurrentLocation = () => {
 export default class MapScreen extends Component {
 
     render() {
-        let self = this;
         let {navigation} = this.props;
-        let canDraggable = navigation.getParams('setHome', false);
+        let canDraggable = navigation.getParam('setHome', false);
         return (
             <MapView
                 provider={PROVIDER_GOOGLE}

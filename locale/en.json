@@ -119,6 +119,12 @@
     "drawer_menu_map":{
         "value": "Map"
     },
+    "drawer_childmenu_home":{
+        "value": "Home"
+    },
+    "drawer_childmenu_emergency":{
+        "value": "Emergency"
+    },
     "drawer_menu_logout":{
         "value": "Log out"
     },
