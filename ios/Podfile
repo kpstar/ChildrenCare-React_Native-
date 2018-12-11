@@ -46,6 +46,7 @@ target 'ChindrenCare' do
 
   pod 'Firebase/Core', '~> 5.11.0'
   pod 'Firebase/Auth', '~> 5.11.0'
+  pod 'Firebase/Database', '~> 5.11.0'
   pod 'Firebase/Messaging', '~> 5.11.0'
 
 
