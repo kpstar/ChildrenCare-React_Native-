@@ -4,11 +4,29 @@ import {
   ImageBackground
 } from 'react-native';
 import { Images } from '../theme';
+import firebase from 'react-native-firebase';
 import { Container } from 'native-base';
 
 export default class Splash extends Component {
 
     componentDidMount() {
+        firebase.messaging().hasPermission()
+            .then(enabled => {
+                if (enabled) {
+                    firebase.messaging().getToken().then(token => {
+                        console.log("LOG: ", token);
+                    })
+                // user has permissions
+                } else {
+                    firebase.messaging().requestPermission()
+                        .then(() => {
+                            console.log('Success');
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        });
+            }
+        });
         setTimeout(()=>{
             this.props.navigation.navigate('LogInScreen');
         }, 200)
