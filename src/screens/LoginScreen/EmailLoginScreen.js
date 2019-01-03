@@ -21,6 +21,7 @@ export default class EmailLogin extends Component {
             password: 'no touch',
             error: '',
             loading: false,
+            uid: '',
         }
     }
 
@@ -89,26 +90,33 @@ export default class EmailLogin extends Component {
         const {email, password} =  this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((credential) => {
-                console.log('Firebase credential = ', credential);
-                let token = credential.user._user.refreshToken;
-                AsyncStorage.setItem('token', token);
                 this.setState({ error: '', loading: false });
-                AsyncStorage.setItem('email', email);
+                let token = credential.user._user.refreshToken;
+                let uid = firebase.auth().currentUser.uid;
+                firebase.database().ref('parents/').child(uid).update({device_token: token})
+                .then((data)=>{
+                    console.log('Update', data);
+                });
+                AsyncStorage.setItem('device_token', token);
                 this.props.navigation.navigate("ParentInfoScreen");
             })
             .catch((error) => {
-                alert(error);
                 this.setState({error: error, loading: false});
             });
     }
 
     onSignup() {
+        let ref = firebase.database().ref('parents/');
         this.setState({ error: '', loading: true, });
         const {email, password} =  this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => {
+            .then((credential) => {
+                let token = credential.user._user.refreshToken;
+                let uid = firebase.auth().currentUser.uid;
                 this.setState({ error: '', loading: false });
-                this.props.navigation.navigate("ParentInfoScreen");
+                ref.child(uid).set({device_token: token, family_name: '', location: {lat:0, lon:0}, email});
+                AsyncStorage.setItem('device_token', token);
+                this.props.navigation.navigate("ParentInfoScreen", {family_name: ''});
             })
             .catch((error) => {
                 alert(error);

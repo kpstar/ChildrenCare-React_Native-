@@ -14,9 +14,7 @@ export default class Splash extends Component {
             .then(enabled => {
                 if (enabled) {
                     firebase.messaging().getToken().then(token => {
-                        console.log("LOG: ", token);
                     })
-                // user has permissions
                 } else {
                     firebase.messaging().requestPermission()
                         .then(() => {

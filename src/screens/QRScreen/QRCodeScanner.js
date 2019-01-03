@@ -14,16 +14,22 @@ import { Container, Button, View } from 'native-base';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { strings } from '../../services/i18n';
 import images from '../../theme/images';
+import firebase from 'react-native-firebase';
 
 export default class QRCodeScan extends Component {
 
     onSuccess(e) {
         let qrCode = e.data;
-        let p_mail = qrCode.split("/")[0];
-        if (p_mail.includes("@")) {
-            AsyncStorage.setItem('email', p_mail);
-            this.setState({qrCodeScan: true, qrCode: qrCode});
+        let p_uid = qrCode.split("/")[0];
+        let my_uid = qrCode.split("/")[1];
+        if (p_uid !== '' && my_uid !== '') {
+            this.setState({p_uid, my_uid});
         }
+        let device_token = firebase.messaging().getToken()
+        .then(token => {
+            firebase.database().ref('children/' + p_uid).child(my_uid).update({device_token: token});
+            this.setState({qrCodeScan: true});
+        });
         return;
     }
 
@@ -31,13 +37,14 @@ export default class QRCodeScan extends Component {
         super(props)
         this.state = {
             qrCodeScan: false,
-            qrCode: '',
+            p_uid: '',
+            my_uid: '',
         }
     }
 
     acceptGPS = () => {
-        this.props.navigation.navigation(
-            "MapScreen", {qrCode: this.state.qrCode}
+        this.props.navigation.navigate(
+            "ChildMapScreen"
         );
     }
 

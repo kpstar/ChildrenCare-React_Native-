@@ -6,6 +6,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import { Images, Colors } from '../../theme';
+import firebase from 'react-native-firebase';
 import { responsiveWidth } from 'react-native-responsive-dimensions'
 import { Container, Button, View, Input, Item, Label } from 'native-base';
 import { strings } from '../../services/i18n';
@@ -17,12 +18,16 @@ export default class ParentInfo  extends Component {
         this.state = {
             familyName: '',
             setMyHome: false,
+            uid: ''
         };
     }
 
-    async componentDidMount() {
-        familyName = await AsyncStorage.getItem('familyName');
-        this.setState({familyName});
+    componentWillMount() {
+        let uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('parents/').child(uid).once('family_name')
+        .then((data)=>{
+            this.setState({uid, familyName:data._value.family_name});
+        });        
     }
 
     render() {
@@ -31,7 +36,10 @@ export default class ParentInfo  extends Component {
                 <ImageBackground source={Images.parent}  style={styles.image}></ImageBackground>
                 <Item floatingLabel style={styles.label}>
                     <Label style={styles.labelText}>{strings('parent_family_name_placeholder_title.value')}</Label>
-                    <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.familyName} onChangeText={(text) => this.setState({familyName: text})}/>                
+                    <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.familyName} onChangeText={(text) => {
+                        this.setState({familyName: text});
+                        firebase.database().ref('parents/').child(this.state.uid).update({family_name: text});
+                    }}/>                
                 </Item>
                 <Button style={styles.button} onPress={this.setMyHome.bind(this)}><Text style={styles.text}>{strings('parent_set_home_button_title.value')}</Text></Button>
                 <ImageBackground source={Images.children}  style={styles.imageTwo}></ImageBackground>
@@ -41,18 +49,12 @@ export default class ParentInfo  extends Component {
     }
 
     addMyChildren() {
-        let {familyName} = this.state;
+        let {familyName, uid} = this.state;
         if (!familyName) {
             alert(strings('alert_empty_familyname_text.value'));
             return;
         }
-        AsyncStorage.setItem('familyName', familyName);
-        this.props.navigation.navigate('ChildInfoScreen');
-    }
-
-    onChangeText(text) {
-        this.setState({ familyName: text });
-        alert(text);
+        this.props.navigation.navigate('ChildrenInfoStack', {uid});
     }
 
     setMyHome() {

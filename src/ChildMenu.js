@@ -22,10 +22,10 @@ export default class ChildMenu extends Component {
                         />
                     </View>
                     <List style={styles.list}>
-                        <ListItem style={styles.listBack} onPress={()=>{this.goto('ChildInfoStack')}}>
+                        <ListItem onPress={()=>{this.goto('ChildInfoStack')}}>
                             <Text style={styles.listItem}>{strings('drawer_childmenu_home.value')}</Text>
                         </ListItem>
-                        <ListItem onPress={()=>{this.goto('MapScreenStack')}}>
+                        <ListItem onPress={()=>{this.goto('ChildMapScreenStack')}}>
                             <Text style={styles.listItem}>{strings('drawer_childmenu_emergency.value')}</Text>
                         </ListItem>
                         <ListItem onPress={()=>{
@@ -41,14 +41,12 @@ export default class ChildMenu extends Component {
                                             actions: [NavigationActions.navigate({ routeName: 'LogInScreen' })],
                                         });
                                         this.props.navigation.dispatch(resetAction);
-                                        // AppData.setItem('login_user', null)
-
                                     }},
                                 ],
                                 { cancelable: false }
                             )
                         }}>
-                            <Text style={styles.listItem}>{strings('drawer_menu_logout.value')}</Text>
+                        <Text style={styles.listItem}>{strings('drawer_menu_logout.value')}</Text>
                         </ListItem>
                     </List>
                 </Content>
@@ -76,9 +74,6 @@ const styles = StyleSheet.create({
         color: Colors.white,
         width: responsiveWidth(55),
         fontSize: FontSizes.medium,
-    },
-    listBack: {
-        backgroundColor: 'rgba(255,255,255,0.5)',
     },
     logoText: {
         fontSize: 24,

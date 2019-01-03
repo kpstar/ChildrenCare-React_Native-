@@ -25,6 +25,7 @@ import EmailScreen from "./screens/LoginScreen/EmailLoginScreen"
 import ChildrenInfo from "./screens/RegisterScreen/ChildrenInfo"
 import ParentInfo from "./screens/RegisterScreen/ParentInfo"
 import MapScreen from "./screens/MainScreen/MapScreen"
+import ChildMapScreen from "./screens/MainScreen/ChildMapScreen"
 import EmergencyScreen from "./screens/MainScreen/Emergency"
 import QRCodeGenerator from "./screens/QRScreen/QRCodeGenerator"
 // import ChildrenQR from "./screens/InfoScreen/ChildrenQR"
@@ -78,8 +79,19 @@ export const MapScreenStack = createStackNavigator({
     },
 });
 
-export const ChildInfoStack = createStackNavigator({
-    MapScreen: { 
+export const ChildMapScreenStack = createStackNavigator({
+    ChildMapScreen: { 
+        screen: ChildMapScreen, 
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: headerStyle,
+            headerLeft: <MenuIcon {...navigation} />,
+            headerRight: <EmptyIcon/>
+        }),
+    },
+});
+
+export const ChildrenInfoStack = createStackNavigator({
+    ChildrenInfo: { 
         screen: ChildrenInfo, 
         navigationOptions: ({ navigation }) => ({
             headerStyle: headerStyle,
@@ -89,9 +101,10 @@ export const ChildInfoStack = createStackNavigator({
     },
 });
 
-export const DrawerStack = createDrawerNavigator(
+export const ParentDrawerStack = createDrawerNavigator(
     {
         ParentInfoStack: {screen: ParentInfoStack},
+        ChildrenInfoStack: {screen: ChildrenInfo},
         MapScreenStack: {screen: MapScreenStack},
     },
     {
@@ -103,8 +116,7 @@ export const DrawerStack = createDrawerNavigator(
 
 export const ChildDrawerStack = createDrawerNavigator(
     {
-        ChildInfoStack: {screen: ChildInfoStack},
-        MapScreenStack: {screen: MapScreenStack},
+        ChildMapScreenStack: {screen: ChildMapScreenStack},
     },
     {
         drawerWidth: width * 2 / 3,
@@ -123,7 +135,7 @@ export const PrimaryNav = createStackNavigator({
     EmailLoginScreen: {screen: EmailScreen},
     QRCodeScanScreen: {screen: QRCodeScanner},
     ChildDrawerStack: {screen: ChildDrawerStack},
-    DrawerStack: {screen: DrawerStack},
+    ParentDrawerStack: {screen: ParentDrawerStack},
     QRCodeGenScreen: {screen: QRCodeGenerator},
 
     // ChildrenQRScreen: {screen: ChildrenQR},

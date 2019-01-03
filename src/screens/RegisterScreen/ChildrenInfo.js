@@ -7,7 +7,8 @@ import {
   AsyncStorage
 } from 'react-native';
 import { Images, Colors, globalStyles } from '../../theme';
-import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
+import firebase from 'react-native-firebase';
 import { Container, Button, Input, Item, Label } from 'native-base';
 import { strings } from '../../services/i18n';
 
@@ -19,10 +20,13 @@ export default class ChildrenInfo extends Component {
             childName: '',
             age: '',
             contactNumber: '',
+            parentUid: '',
         }
     }
 
     componentDidMount() {
+        let p_uid = this.props.navigation.getParam('uid', '');
+        this.setState({parentUid: p_uid});
     }
 
     render() {
@@ -47,7 +51,7 @@ export default class ChildrenInfo extends Component {
     }
 
     async generateQR() {
-        let {childName, age, contactNumber} = this.state;
+        let {childName, age, contactNumber, parentUid} = this.state;
         let email = await AsyncStorage.getItem('email');
         let errorKey = '';
         if (!childName) {
@@ -61,7 +65,9 @@ export default class ChildrenInfo extends Component {
             alert(strings(errorKey));
             return;
         }
-        let qrCodeTxt = email + "/" + childName + "/" + age + '/' + contactNumber;
+        let ch_uid = firebase.database().ref('children/').child(parentUid).push({name: childName, age, contactNumber, device_token: '', location: {lat:0, lon: 0}});
+        console.log('Children UId = ', ch_uid.key);
+        let qrCodeTxt = parentUid + '/' + ch_uid.key;
         this.props.navigation.navigate(
             'QRCodeGenScreen',
             { qrCodeTxt },
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
         marginTop: responsiveHeight(15),
         width: responsiveWidth(40),
         height: responsiveWidth(40),
-        marginBottom: 15
+        marginBottom: 30,
     },
     label: {
         width: responsiveWidth(80),
