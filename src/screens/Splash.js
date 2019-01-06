@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 import { Images } from '../theme';
 import firebase from 'react-native-firebase';
@@ -26,8 +26,9 @@ export default class Splash extends Component {
             }
         });
         setTimeout(()=>{
-            this.props.navigation.navigate('LogInScreen');
-        }, 200)
+            // this.props.navigation.navigate('LogInScreen');
+            this.props.navigation.navigate('PhoneLoginScreen');
+        }, 2000)
     }
 
     render() {

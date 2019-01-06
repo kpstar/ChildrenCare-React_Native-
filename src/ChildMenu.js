@@ -5,6 +5,7 @@ import { Container, Content, Button, Icon, Form, Item, Label, Input, Text, List,
 import { strings } from './services/i18n';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { responsiveWidth } from 'react-native-responsive-dimensions';
+import store from './Store'
 
 export default class ChildMenu extends Component {
     goto(key){
@@ -22,10 +23,13 @@ export default class ChildMenu extends Component {
                         />
                     </View>
                     <List style={styles.list}>
-                        <ListItem onPress={()=>{this.goto('ChildInfoStack')}}>
+                        <ListItem onPress={()=>{this.goto('ChildMapScreenStack')}}>
                             <Text style={styles.listItem}>{strings('drawer_childmenu_home.value')}</Text>
                         </ListItem>
-                        <ListItem onPress={()=>{this.goto('ChildMapScreenStack')}}>
+                        <ListItem onPress={()=>{
+                            store.childMapScreen.onChangeVisible(false)
+                            this.props.navigation.closeDrawer();
+                            }}>
                             <Text style={styles.listItem}>{strings('drawer_childmenu_emergency.value')}</Text>
                         </ListItem>
                         <ListItem onPress={()=>{

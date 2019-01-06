@@ -3,6 +3,7 @@ import { View, StatusBar, StyleSheet, Image, Alert} from 'react-native';
 import {Colors, Images, FontSizes} from './theme';
 import { Container, Content, Button, Icon, Form, Item, Label, Input, Text, List, ListItem} from 'native-base';
 import { strings } from './services/i18n';
+import firebase from 'react-native-firebase';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { responsiveWidth } from 'react-native-responsive-dimensions';
 
@@ -17,7 +18,7 @@ export default class Menu extends Component {
                 <Content>
                     <View style={styles.logo}>
                         <Image 
-                            source={Images.profile} 
+                            source={Images.profile}
                             style={{width: 120, height: 120, resizeMode: 'cover', borderRadius: 60}}
                         />
                     </View>
@@ -40,9 +41,8 @@ export default class Menu extends Component {
                                             key: null,
                                             actions: [NavigationActions.navigate({ routeName: 'LogInScreen' })],
                                         });
+                                        firebase.auth().signOut();
                                         this.props.navigation.dispatch(resetAction);
-                                        // AppData.setItem('login_user', null)
-
                                     }},
                                 ],
                                 { cancelable: false }
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.Red,
     },
     logo: {
+        marginTop: 30,
         justifyContent: 'center',
         alignItems: 'center',
         height: 200,

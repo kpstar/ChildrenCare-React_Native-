@@ -6,7 +6,7 @@ import {
   Text,
   AsyncStorage
 } from 'react-native';
-import { Images, Colors, globalStyles} from '../../theme';
+import { Images, Colors, globalStyles, FontSizes} from '../../theme';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, View, Item, Label, Input, Spinner } from 'native-base';
 import { strings } from '../../services/i18n';
@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.white,
+        fontSize: FontSizes.medium,
     },
     input: {
         color: Colors.white,

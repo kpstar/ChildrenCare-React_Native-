@@ -98,6 +98,9 @@
     "main_manually_update_button_title":{
         "value": "Manually Update Location"
     },
+    "main_painc_mode_title":{
+        "value": "PANIC MODE"
+    },
     "alert_empty_familyname_text": {
         "value": "Please insert your family name"
     },

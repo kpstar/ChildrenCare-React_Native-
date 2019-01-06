@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
+    Image,
     AppRegistry
   } from 'react-native';
 import firebase from 'react-native-firebase';
@@ -31,15 +32,15 @@ export default class MapScreen extends Component {
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 }}
-                onRegionChange={() => this.onRegionChange.bind(this)}
                 region={this.state.region}>     
                 <Marker draggable={canDraggable}
                     coordinate={this.state.x}
-                    image={images.home}
                     onDragEnd={(e) => {
-                        this.setState({ x: e.nativeEvent.coordinate });
-                        firebase.database().ref('parents/').child(uid).update({location:{lat: this.state.x.latitude, lon: this.state.x.longitude}});
+                        this.setState({ x: e.nativeEvent.coordinate, region: {latitude: e.nativeEvent.coordinate.latitude, longitude: e.nativeEvent.coordinate.longitude, latitudeDelta: 0.003, longitudeDelta: 0.003} });
+                        firebase.database().ref('parents/').child(uid).update({location:{lat: e.nativeEvent.coordinate.latitude, lon: e.nativeEvent.coordinate.longitude}});
                     }} >
+                    <Image source={images.home} style={styles.imageHome}>
+                    </Image>
                 </Marker>
             </MapView>
         )
@@ -63,10 +64,8 @@ export default class MapScreen extends Component {
     componentDidMount() {
         let uid = firebase.auth().currentUser.uid;
         let lat = 0, lon = 0;
-        // firebase.database().ref('parents/').child(uid).once
         firebase.database().ref('parents/').child(uid).once('location')
         .then((data)=>{
-            console.log('Family Name = ', data._value.location);
             lat = data._value.location.lat;
             lon = data._value.location.lon;
             if (lat == 0 && lon == 0) {
@@ -87,7 +86,6 @@ export default class MapScreen extends Component {
                     }
                 });
             } else {
-                console.log(lat, lon);
                 this.setState({
                     region: {
                         latitude: lat,
@@ -103,13 +101,14 @@ export default class MapScreen extends Component {
             }
         });  
     }
-    onRegionChange(region) {
-        this.setState({ region });
-    }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    imageHome: {
+        width: 50,
+        height: 58,
     },
 });

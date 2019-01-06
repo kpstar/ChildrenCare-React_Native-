@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Text
 } from 'react-native';
-import { Images, Colors, globalStyles } from '../../theme';
+import { Images, Colors, globalStyles, FontSizes } from '../../theme';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, View } from 'native-base';
 import { strings } from '../../services/i18n';
@@ -56,8 +56,7 @@ export default class Parent extends Component {
     }
 
     onPhoneLogin() {
-        alert('Phone Login');
-        // this.props.navigation.navigate("PhoneScreen", {loginStatus: this.state.loginStatus});
+        this.props.navigation.navigate("PhoneLoginScreen", {loginStatus: this.state.loginStatus});
     }
 
     onEmailLogin() {
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
     image: {
         width: responsiveWidth(50),
         height: responsiveWidth(50),
-        marginBottom: 15
+        marginBottom: 50,
     },
     view: {
         width: responsiveWidth(80),
@@ -103,5 +102,6 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.white,
+        fontSize: FontSizes.medium,
     },
 });

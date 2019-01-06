@@ -43,9 +43,8 @@ export default class QRCodeScan extends Component {
     }
 
     acceptGPS = () => {
-        this.props.navigation.navigate(
-            "ChildMapScreen"
-        );
+        let {p_uid, my_uid} = this.state;
+        this.props.navigation.navigate('ChildMapScreen', {p_uid, my_uid});
     }
 
     componentDidMount() {

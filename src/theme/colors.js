@@ -3,6 +3,12 @@ const colors = {
     Blue: '#017fb9',
     Green: '#01dba9',  
     Red: '#A62C2C',
+
+    Brown: 'rgba(86, 32, 32, 0.8)',
+
+    pureRed: 'rgba(255,0,0, 0.5)',
+
+    alphaRed: 'rgba(166,44,44,0.5)',
   
     backgroundPrimary: '#F5FCFF',
     backgroundSecondary : '#f4f4f4',

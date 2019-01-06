@@ -5,7 +5,7 @@ import {
   Text,
   AsyncStorage,
 } from 'react-native';
-import { Images, Colors } from '../../theme';
+import { Images, Colors, FontSizes } from '../../theme';
 import firebase from 'react-native-firebase';
 import { responsiveWidth } from 'react-native-responsive-dimensions'
 import { Container, Button, View, Input, Item, Label } from 'native-base';
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
         width: responsiveWidth(80),
         padding: 20,
         marginTop: 10,
+        marginLeft: responsiveWidth(10),
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: responsiveWidth(10),
         backgroundColor: Colors.buttonColor,
     },
     buttonTwo: {
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.white,
+        fontSize: FontSizes.medium,
     },
     input: {
         color: Colors.white,

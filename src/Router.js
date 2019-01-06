@@ -22,6 +22,7 @@ import Children from "./screens/LoginScreen/Children"
 // import PhoneNumber from "./screens/VerificationScreen/PhoneNumber"
 import QRCodeScanner from "./screens/QRScreen/QRCodeScanner"
 import EmailScreen from "./screens/LoginScreen/EmailLoginScreen"
+import PhoneScreen from "./screens/LoginScreen/PhoneLoginScreen"
 import ChildrenInfo from "./screens/RegisterScreen/ChildrenInfo"
 import ParentInfo from "./screens/RegisterScreen/ParentInfo"
 import MapScreen from "./screens/MainScreen/MapScreen"
@@ -90,6 +91,17 @@ export const ChildMapScreenStack = createStackNavigator({
     },
 });
 
+export const EmergencyScreenStack = createStackNavigator({
+    EmergencyScreen: { 
+        screen: EmergencyScreen, 
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: headerStyle,
+            headerLeft: <MenuIcon {...navigation} />,
+            headerRight: <EmptyIcon/>
+        }),
+    },
+});
+
 export const ChildrenInfoStack = createStackNavigator({
     ChildrenInfo: { 
         screen: ChildrenInfo, 
@@ -116,7 +128,8 @@ export const ParentDrawerStack = createDrawerNavigator(
 
 export const ChildDrawerStack = createDrawerNavigator(
     {
-        ChildMapScreenStack: {screen: ChildMapScreenStack},
+        ChildMapScreen: {screen: ChildMapScreenStack},
+        EmergencyScreenStack: {screen: EmergencyScreen},
     },
     {
         drawerWidth: width * 2 / 3,
@@ -131,14 +144,12 @@ export const PrimaryNav = createStackNavigator({
     LogInScreen: {screen: LogIn},
     ParentLoginScreen: {screen: Parent},
     ChildrenLoginScreen: {screen: Children},
-    // PhoneScreen: {screen: PhoneNumber},
+    PhoneLoginScreen: {screen: PhoneScreen},
     EmailLoginScreen: {screen: EmailScreen},
     QRCodeScanScreen: {screen: QRCodeScanner},
     ChildDrawerStack: {screen: ChildDrawerStack},
     ParentDrawerStack: {screen: ParentDrawerStack},
     QRCodeGenScreen: {screen: QRCodeGenerator},
-
-    // ChildrenQRScreen: {screen: ChildrenQR},
 }, {
     navigationOptions: {
         gesturesEnabled: false,
