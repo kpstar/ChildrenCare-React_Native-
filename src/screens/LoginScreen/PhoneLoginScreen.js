@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Button, Text, TextInput, Image } from 'react-native';
-
+import { TouchableOpacity, View, Button, Text, TextInput, Image, StyleSheet } from 'react-native';
+import { Container } from 'native-base';
+import { Images, Colors, globalStyles, FontSizes} from '../../theme';
 import firebase from 'react-native-firebase';
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { strings } from '../../services/i18n';
 
 const successImageUri = 'https://cdn.pixabay.com/photo/2015/06/09/16/12/icon-803718_1280.png';
@@ -115,26 +117,26 @@ export default class PhoneLoginScreen extends Component {
     const { user, confirmResult } = this.state;
     return (
         <Container style={globalStyles.container}>
-                <View style={globalStyles.header}>
-                    <TouchableOpacity onPress={this.goBack}>
-                        <Image
-                            source={ Images.backBtn }
-                            style={ globalStyles.backBtn }></Image>
-                    </TouchableOpacity>
-                </View>
-                <Container style={styles.innerBox}>
-                    <Image style={styles.image}
-                        source={Images.parent}>
-                    </Image>
-                    <View style={styles.view}>
-                        <Button block onPress={this.onPhoneLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('signup_button_phone_title.value')}</Text></Button>
-                        <Button block onPress={this.onEmailLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('signup_button_email_title.value')}</Text></Button>
-                        <TouchableOpacity onPress={this.onLoginMode.bind(this)} style={styles.buttonTwo}><Text style={styles.text}>{strings('signup_mode_button_title.value')}</Text></TouchableOpacity> 
-                    </View>                   
-                </Container>
+            <View style={globalStyles.header}>
+                <TouchableOpacity onPress={this.goBack}>
+                    <Image
+                        source={ Images.backBtn }
+                        style={ globalStyles.backBtn }></Image>
+                </TouchableOpacity>
+            </View>
+            <Container style={styles.innerBox}>
+                <Image style={styles.image}
+                    source={Images.parent}>
+                </Image>
+                <View style={styles.view}>
+        
+                </View>                   
             </Container>
+        </Container>
     );
   }
+
+
 }
 
 const styles = StyleSheet.create({
@@ -144,6 +146,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: Colors.Red,
     },
+    innerBox: {
+      marginTop: 0,
+      backgroundColor: Colors.Red,
+      alignItems: 'center',
+    },
     text: {
         color: Colors.white,
         textAlign: 'center',
@@ -152,7 +159,8 @@ const styles = StyleSheet.create({
     },
     image: {
         alignItems: 'center',
-        width: responsiveWidth(50),
-        height: responsiveWidth(50),
+        marginTop: 30,
+        width: responsiveWidth(40),
+        height: responsiveWidth(40),
     }
 });
