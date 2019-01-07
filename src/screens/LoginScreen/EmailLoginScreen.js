@@ -4,7 +4,7 @@ import {
   Image,
   TouchableOpacity,
   Text,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
 import { Images, Colors, globalStyles, FontSizes} from '../../theme';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
@@ -25,8 +25,7 @@ export default class EmailLogin extends Component {
         }
     }
 
-    async componentDidMount() {
-        let token = await AsyncStorage.getItem('email');
+    componentDidMount() {
     }
 
     render() {
@@ -91,13 +90,15 @@ export default class EmailLogin extends Component {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((credential) => {
                 this.setState({ error: '', loading: false });
-                let token = credential.user._user.refreshToken;
-                let uid = firebase.auth().currentUser.uid;
-                firebase.database().ref('parents/').child(uid).update({device_token: token})
-                .then((data)=>{
-                    console.log('Update', data);
+                let token = AsyncStorage.getItem('device_token')
+                .then(token=>{
+                    console.log('Device Token =', token);
+                    let uid = firebase.auth().currentUser.uid;
+                    firebase.database().ref('parents/').child(uid).update({device_token: token})
+                    .then((data)=>{
+                        console.log('Update', data);
+                    });
                 });
-                AsyncStorage.setItem('device_token', token);
                 this.props.navigation.navigate("ParentInfoScreen");
             })
             .catch((error) => {
@@ -111,12 +112,13 @@ export default class EmailLogin extends Component {
         const {email, password} =  this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((credential) => {
-                let token = credential.user._user.refreshToken;
-                let uid = firebase.auth().currentUser.uid;
-                this.setState({ error: '', loading: false });
-                ref.child(uid).set({device_token: token, family_name: '', location: {lat:0, lon:0}, email});
-                AsyncStorage.setItem('device_token', token);
-                this.props.navigation.navigate("ParentInfoScreen", {family_name: ''});
+                let token = AsyncStorage.getItem('device_token')
+                .then(token=>{
+                    let uid = firebase.auth().currentUser.uid;
+                    this.setState({ error: '', loading: false });
+                    ref.child(uid).set({device_token: token, family_name: '', location: {lat:0, lon:0}, email});
+                    this.props.navigation.navigate("ParentInfoScreen", {family_name: ''});
+                });
             })
             .catch((error) => {
                 alert(error);

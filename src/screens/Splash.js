@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   ImageBackground,
+  AsyncStorage,
 } from 'react-native';
 import { Images } from '../theme';
 import firebase from 'react-native-firebase';
@@ -14,6 +15,8 @@ export default class Splash extends Component {
             .then(enabled => {
                 if (enabled) {
                     firebase.messaging().getToken().then(token => {
+                        console.log('Token =', token);
+                        AsyncStorage.setItem('device_token', token);
                     })
                 } else {
                     firebase.messaging().requestPermission()
@@ -26,8 +29,8 @@ export default class Splash extends Component {
             }
         });
         setTimeout(()=>{
-            // this.props.navigation.navigate('LogInScreen');
-            this.props.navigation.navigate('PhoneLoginScreen');
+            this.props.navigation.navigate('LogInScreen');
+            // this.props.navigation.navigate('PhoneLoginScreen');
         }, 2000)
     }
 

@@ -38,6 +38,15 @@
     "terms_and_condition_title":{
         "value": "Terms and condition"
     },
+    "terms_and_condition_content":{
+        "value": "Please read these terms and conditions\n of use carefully before accessing, using or\n obtaining any materials, information, products\n or service. By using our application, you\n accept to our terms and condition.\n We hold full rights to this application.\n Your personal information such as email\n address, phone number and gps location\n will not be used to violate your privacy nor\n in violation of the law. If you've understand\n the terms above, click accept and proceed\n forward.\n Thank you"
+    },
+    "phone_auth_button_title":{
+        "value": "Accept and proceed"
+    },
+    "phone_verification_label_title":{
+        "value": "Verifying your number"
+    },
     "login_text_email_placeholder":{
         "value": "Email"
     },

@@ -9,7 +9,7 @@ import { strings } from '../../services/i18n';
 
 const successImageUri = 'https://cdn.pixabay.com/photo/2015/06/09/16/12/icon-803718_1280.png';
 
-export default class PhoneLoginScreen extends Component {
+export default class PhoneVerificationScreen extends Component {
   constructor(props) {
     super(props);
     this.unsubscribe = null;
@@ -17,7 +17,7 @@ export default class PhoneLoginScreen extends Component {
       user: null,
       message: '',
       codeInput: '',
-      phoneNumber: '+8618641512914',
+      phoneNumber: '+60',
       confirmResult: null,
     };
   }
@@ -87,16 +87,7 @@ export default class PhoneLoginScreen extends Component {
   }
 
   onPhoneLogin() {
-    const { phoneNumber } = this.state;
-    this.setState({ message: 'Sending code ...' });
-    firebase.auth().signInWithPhoneNumber(phoneNumber)
-      .then(confirmResult => {
-        this.setState({ confirmResult, message: 'Code has been sent!'})
-        alert(confirmResult.phoneNumber);
-      })
-      .catch(error => this.setState({ message: `Sign In With Phone Number Error: ${error.message}` }));
 
-    this.props.navigation.navigate('PhoneVerificationScreen');
   }
   
   renderMessage() {
@@ -140,9 +131,11 @@ export default class PhoneLoginScreen extends Component {
             </View>
             <Container style={styles.innerBox}>
                 <Image style={styles.image}
-                    source={Images.parent}>
+                    source={Images.setting}>
                 </Image>
-                <View style={styles.view}>
+                <Label style={styles.labelTitle}>{strings('phone_verification_label_title.value')}</Label>
+                <Input keyboardType={'phone-pad'} autoCapitalize='none' style={styles.input} autoCorrect={false} value={this.state.phoneNumber} onChangeText={text=>this.setState({phoneNumber: text})}/>
+                {/* <View style={styles.view}>
                   <Item floatingLabel>
                       <Label style={styles.label}>{strings('mobile_number_text_placeholder.value')}</Label>
                       <Input keyboardType={'phone-pad'} autoCapitalize='none' style={styles.input} autoCorrect={false} value={this.state.phoneNumber} onChangeText={text=>this.setState({phoneNumber: text})}/>
@@ -152,7 +145,7 @@ export default class PhoneLoginScreen extends Component {
                   <Label style={styles.labelTitle}>{strings('terms_and_condition_title.value')}</Label>
                   <Label style={styles.labelContent}>{strings('terms_and_condition_content.value')}</Label>
                 </View>
-                <Button block onPress={this.onPhoneLogin.bind(this)} style={styles.button}><Text style={styles.texts}>{strings('phone_auth_button_title.value')}</Text></Button>            
+                <Button block onPress={this.onPhoneLogin.bind(this)} style={styles.button}><Text style={styles.texts}>{strings('phone_auth_button_title.value')}</Text></Button>             */}
             </Container>
         </Container>
     );
@@ -223,9 +216,10 @@ const styles = StyleSheet.create({
     },
     image: {
         alignItems: 'center',
+        resizeMode: 'cover',
         marginTop: 30,
         marginBottom: 20,
-        width: responsiveWidth(40),
+        width: responsiveWidth(45),
         height: responsiveWidth(40),
     }
 });

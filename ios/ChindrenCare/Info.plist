@@ -37,6 +37,19 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.756301725702-3vuv8v46or3rrtji6qs8lvh0a17gcvrq</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+		</dict>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>To get the information from QRCode</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
