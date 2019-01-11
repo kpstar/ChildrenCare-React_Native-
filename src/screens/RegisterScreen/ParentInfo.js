@@ -9,6 +9,7 @@ import { Images, Colors, FontSizes } from '../../theme';
 import firebase from 'react-native-firebase';
 import { responsiveWidth } from 'react-native-responsive-dimensions'
 import { Container, Button, View, Input, Item, Label } from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
 import { strings } from '../../services/i18n';
 
 export default class ParentInfo  extends Component {
@@ -18,6 +19,7 @@ export default class ParentInfo  extends Component {
         this.state = {
             familyName: '',
             setMyHome: false,
+            loading: true,
             uid: ''
         };
     }
@@ -26,13 +28,18 @@ export default class ParentInfo  extends Component {
         let uid = firebase.auth().currentUser.uid;
         firebase.database().ref('parents/').child(uid).once('family_name')
         .then((data)=>{
-            this.setState({uid, familyName:data._value.family_name});
+            this.setState({uid, familyName:data._value.family_name, loading: false});
         });        
     }
 
     render() {
         return (
             <Container style={styles.container}>
+                <Spinner
+                    visible={this.state.loading}
+                    textContent={strings('spinner_loading_information.value')}
+                    textStyle={styles.spinnerTextStyle}
+                />
                 <ImageBackground source={Images.parent}  style={styles.image}></ImageBackground>
                 <Item floatingLabel style={styles.label}>
                     <Label style={styles.labelText}>{strings('parent_family_name_placeholder_title.value')}</Label>
@@ -116,5 +123,9 @@ const styles = StyleSheet.create({
     },
     input: {
         color: Colors.white,
+    },
+    spinnerTextStyle: {
+        color: Colors.white,
+        fontSize: FontSizes.medium,
     },
 });

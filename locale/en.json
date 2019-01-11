@@ -32,6 +32,12 @@
     "login_button_library_title":{
         "value": "Scan from Gallery"
     },
+    "import_photo_from_library_title":{
+        "value": "Import from Gallery"
+    },
+    "confirm_child_button_title":{
+        "value": "Confirm"
+    },
     "mobile_number_text_placeholder":{
         "value": "Enter mobile number"
     },
@@ -44,8 +50,17 @@
     "phone_auth_button_title":{
         "value": "Accept and proceed"
     },
+    "spinner_loading_title_verification":{
+        "value": "Signing in..."
+    },
+    "spinner_loading_information":{
+        "value": "Loading..."
+    },
     "phone_verification_label_title":{
         "value": "Verifying your number"
+    },
+    "phone_verification_hint_title":{
+        "value": "tap to key in manually"
     },
     "login_text_email_placeholder":{
         "value": "Email"

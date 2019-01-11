@@ -8,6 +8,7 @@ const images = {
     success: require('../images/success.png'),
     profile: require('../images/logo_profile.jpg'),
     home: require('../images/home.png'),
+    emptyQR: require('../images/emptyQR.png'),
     location: require('../images/location.png'),
 }
 

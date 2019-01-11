@@ -38,7 +38,7 @@ export default class Children extends Component {
     }
 
     onLibraryLogin() {
-        // this.props.navigation.navigate("LibraryScreen");
+        this.props.navigation.navigate("QRCodeDecoder");
     }
 
     goBack = () => {

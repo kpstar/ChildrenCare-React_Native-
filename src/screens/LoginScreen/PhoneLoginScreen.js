@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View, Text, TextInput, Image, StyleSheet } from 'react-native';
-import { Container, Item, Label, Button, Input } from 'native-base';
+import { Container, Item, Label, Button, Input, Spinner } from 'native-base';
 import { Images, Colors, globalStyles, FontSizes} from '../../theme';
 import firebase from 'react-native-firebase';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
@@ -15,120 +15,31 @@ export default class PhoneLoginScreen extends Component {
     this.unsubscribe = null;
     this.state = {
       user: null,
-      message: '',
-      codeInput: '',
-      phoneNumber: '+8618641512914',
+      loading: false,
+      error: '',
+      phoneNumber: '+8613941520975',
       confirmResult: null,
     };
   }
 
-  componentDidMount() {
-    // this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-    //   if (user) {
-    //     this.setState({ user: user.toJSON() });
-    //   } else {
-    //     // User has been signed out, reset the state
-    //     this.setState({
-    //       user: null,
-    //       message: '',
-    //       codeInput: '',
-    //       phoneNumber: '+44',
-    //       confirmResult: null,
-    //     });
-    //   }
-    // });
-  }
-
-  componentWillUnmount() {
-    //  if (this.unsubscribe) this.unsubscribe();
-  }
-
-  signIn = () => {
-    const { phoneNumber } = this.state;
-    this.setState({ message: 'Sending code ...' });
-
-    firebase.auth().signInWithPhoneNumber(phoneNumber)
-      .then(confirmResult => this.setState({ confirmResult, message: 'Code has been sent!' }))
-      .catch(error => this.setState({ message: `Sign In With Phone Number Error: ${error.message}` }));
-  };
-
-  confirmCode = () => {
-    const { codeInput, confirmResult } = this.state;
-
-    if (confirmResult && codeInput.length) {
-      confirmResult.confirm(codeInput)
-        .then((user) => {
-          this.setState({ message: 'Code Confirmed!' });
-        })
-        .catch(error => this.setState({ message: `Code Confirm Error: ${error.message}` }));
-    }
-  };
-
   signOut = () => {
     firebase.auth().signOut();
-  }
-  
-  renderPhoneNumberInput() {
-   const { phoneNumber } = this.state;
-      
-    return (
-      <View style={{ padding: 25 }}>
-        <Text>Enter phone number:</Text>
-        <TextInput
-          autoFocus
-          style={{ height: 40, marginTop: 15, marginBottom: 15 }}
-          onChangeText={value => this.setState({ phoneNumber: value })}
-          placeholder={'Phone number ... '}
-          value={phoneNumber}
-        />
-        <Button title="Sign In" color="green" onPress={this.signIn} />
-      </View>
-    );
   }
 
   onPhoneLogin() {
     const { phoneNumber } = this.state;
-    this.setState({ message: 'Sending code ...' });
+    this.setState({ error: '', loading: true, });
     firebase.auth().signInWithPhoneNumber(phoneNumber)
-      .then(confirmResult => {
-        this.setState({ confirmResult, message: 'Code has been sent!'})
-        alert(confirmResult.phoneNumber);
+      .then((confirmResult) => {
+        this.props.navigation.navigate('PhoneVerificationScreen', {confirmResult});
       })
-      .catch(error => this.setState({ message: `Sign In With Phone Number Error: ${error.message}` }));
-
-    this.props.navigation.navigate('PhoneVerificationScreen');
-  }
-  
-  renderMessage() {
-    const { message } = this.state;
-  
-    if (!message.length) return null;
-  
-    return (
-      <Text style={{ padding: 5, backgroundColor: '#000', color: '#fff' }}>{message}</Text>
-    );
-  }
-  
-  renderVerificationCodeInput() {
-    const { codeInput } = this.state;
-  
-    return (
-      <View style={{ marginTop: 25, padding: 25 }}>
-        <Text>Enter verification code below:</Text>
-        <TextInput
-          autoFocus
-          style={{ height: 40, marginTop: 15, marginBottom: 15 }}
-          onChangeText={value => this.setState({ codeInput: value })}
-          placeholder={'Code ... '}
-          value={codeInput}
-        />
-        <Button title="Confirm Code" color="#841584" onPress={this.confirmCode} />
-      </View>
-    );
+      .catch(error => {
+        this.setState({error, loading: false});
+        alert(error);
+      });
   }
 
   render() {
-    const { user, confirmResult } = this.state;
     return (
         <Container style={globalStyles.container}>
             <View style={globalStyles.header}>
@@ -145,19 +56,29 @@ export default class PhoneLoginScreen extends Component {
                 <View style={styles.view}>
                   <Item floatingLabel>
                       <Label style={styles.label}>{strings('mobile_number_text_placeholder.value')}</Label>
-                      <Input keyboardType={'phone-pad'} autoCapitalize='none' style={styles.input} autoCorrect={false} value={this.state.phoneNumber} onChangeText={text=>this.setState({phoneNumber: text})}/>
+                      <Input autoCapitalize='none' style={styles.input} autoCorrect={false} value={this.state.phoneNumber} onChangeText={text=>this.setState({phoneNumber: text})}/>
                   </Item>
                 </View>  
                 <View style={styles.viewone}>
                   <Label style={styles.labelTitle}>{strings('terms_and_condition_title.value')}</Label>
                   <Label style={styles.labelContent}>{strings('terms_and_condition_content.value')}</Label>
                 </View>
-                <Button block onPress={this.onPhoneLogin.bind(this)} style={styles.button}><Text style={styles.texts}>{strings('phone_auth_button_title.value')}</Text></Button>            
+                {this.renderButtonOrSpinner()}
             </Container>
         </Container>
     );
   }
 
+  renderButtonOrSpinner() {
+    if (this.state.loading) {
+        return <Spinner color={Colors.White} style={styles.spinner} />;    
+    }
+    return <Button block onPress={this.onPhoneLogin.bind(this)} style={styles.button}><Text style={styles.texts}>{strings('phone_auth_button_title.value')}</Text></Button>;       
+  } 
+
+  goBack = () => {
+    this.props.navigation.goBack();
+  }
 
 }
 
@@ -197,6 +118,9 @@ const styles = StyleSheet.create({
       marginLeft: responsiveWidth(10),
       marginRight: responsiveWidth(10),
       backgroundColor: Colors.pureRed,
+    },
+    spinner: {
+      justifyContent: 'center',
     },
     text: {
         color: Colors.white,

@@ -52,6 +52,8 @@ target 'ChindrenCare' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'ChindrenCareTests' do
     inherit! :search_paths
     # Pods for testing
@@ -79,8 +81,12 @@ post_install do |installer|
         config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
       end
     end
-    if target.name == "React"
-      target.remove_from_project
+    # if target.name == "React"
+    #   target.remove_from_project
+    # end
+    targets_to_ignore = %w(React yoga)
+      if targets_to_ignore.include? target.name
+        target.remove_from_project
+      end
     end
-  end
 end

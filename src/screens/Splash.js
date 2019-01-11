@@ -15,7 +15,6 @@ export default class Splash extends Component {
             .then(enabled => {
                 if (enabled) {
                     firebase.messaging().getToken().then(token => {
-                        console.log('Token =', token);
                         AsyncStorage.setItem('device_token', token);
                     })
                 } else {
@@ -30,7 +29,7 @@ export default class Splash extends Component {
         });
         setTimeout(()=>{
             this.props.navigation.navigate('LogInScreen');
-            // this.props.navigation.navigate('PhoneLoginScreen');
+            // this.props.navigation.navigate('PhoneVerificationScreen');
         }, 2000)
     }
 

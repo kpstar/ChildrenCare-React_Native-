@@ -20,10 +20,15 @@ export default class QRCodeScan extends Component {
 
     onSuccess(e) {
         let qrCode = e.data;
+        if (qrCode.includes('http')) {
+            return;
+        }
         let p_uid = qrCode.split("/")[0];
         let my_uid = qrCode.split("/")[1];
         if (p_uid !== '' && my_uid !== '') {
             this.setState({p_uid, my_uid});
+        } else {
+            return;
         }
         let device_token = firebase.messaging().getToken()
         .then(token => {

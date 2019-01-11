@@ -25,9 +25,6 @@ export default class EmailLogin extends Component {
         }
     }
 
-    componentDidMount() {
-    }
-
     render() {
         const {navigation} = this.props;
         const loginStatus = navigation.getParam('loginStatus', false);
@@ -92,7 +89,6 @@ export default class EmailLogin extends Component {
                 this.setState({ error: '', loading: false });
                 let token = AsyncStorage.getItem('device_token')
                 .then(token=>{
-                    console.log('Device Token =', token);
                     let uid = firebase.auth().currentUser.uid;
                     firebase.database().ref('parents/').child(uid).update({device_token: token})
                     .then((data)=>{
@@ -103,6 +99,7 @@ export default class EmailLogin extends Component {
             })
             .catch((error) => {
                 this.setState({error: error, loading: false});
+                alert(error);
             });
     }
 

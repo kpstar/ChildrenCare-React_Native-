@@ -20,6 +20,7 @@ import Splash from "./screens/Splash"
 import Parent from "./screens/LoginScreen/Parent"
 import Children from "./screens/LoginScreen/Children"
 import QRCodeScanner from "./screens/QRScreen/QRCodeScanner"
+import QRCodeDecoder from "./screens/QRScreen/QRCodeDecoder"
 import EmailScreen from "./screens/LoginScreen/EmailLoginScreen"
 import PhoneScreen from "./screens/LoginScreen/PhoneLoginScreen"
 import PhoneVerification from "./screens/LoginScreen/PhoneVerification"
@@ -145,6 +146,7 @@ export const PrimaryNav = createStackNavigator({
     ParentLoginScreen: {screen: Parent},
     ChildrenLoginScreen: {screen: Children},
     PhoneLoginScreen: {screen: PhoneScreen},
+    QRCodeDecoder: {screen: QRCodeDecoder},
     PhoneVerificationScreen: {screen: PhoneVerification},
     EmailLoginScreen: {screen: EmailScreen},
     QRCodeScanScreen: {screen: QRCodeScanner},

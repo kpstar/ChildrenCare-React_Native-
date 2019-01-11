@@ -154,6 +154,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
 		};
+		08B5706321E4E148003DCED5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08B5703321E4E148003DCED5 /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
 		08EC455121B19BCF00BE4EA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08EC454D21B19BCE00BE4EA0 /* AirMaps.xcodeproj */;
@@ -410,6 +417,7 @@
 		088E071B21AD1B9800CC2E3C /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		088E072521AD330B00CC2E3C /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		08A013A3219D086100021F80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		08B5703321E4E148003DCED5 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		08DA1A6A21B6B41400FC2704 /* ChindrenCare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ChindrenCare.entitlements; path = ChindrenCare/ChindrenCare.entitlements; sourceTree = "<group>"; };
 		08EC454D21B19BCE00BE4EA0 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -651,6 +659,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		08B5703421E4E148003DCED5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				08B5706421E4E148003DCED5 /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		08EC454E21B19BCE00BE4EA0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +785,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				08B5703321E4E148003DCED5 /* RNImagePicker.xcodeproj */,
 				08EC454D21B19BCE00BE4EA0 /* AirMaps.xcodeproj */,
 				088E072521AD330B00CC2E3C /* RCTCameraRoll.xcodeproj */,
 				088E071B21AD1B9800CC2E3C /* RNFS.xcodeproj */,
@@ -1039,6 +1056,10 @@
 					ProjectRef = 088E071B21AD1B9800CC2E3C /* RNFS.xcodeproj */;
 				},
 				{
+					ProductGroup = 08B5703421E4E148003DCED5 /* Products */;
+					ProjectRef = 08B5703321E4E148003DCED5 /* RNImagePicker.xcodeproj */;
+				},
+				{
 					ProductGroup = 088E071521ACD7AF00CC2E3C /* Products */;
 					ProjectRef = 088E071421ACD7AF00CC2E3C /* RNViewShot.xcodeproj */;
 				},
@@ -1136,6 +1157,13 @@
 			fileType = archive.ar;
 			path = libRNFirebase.a;
 			remoteRef = 08A0143C219D0BF000021F80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		08B5706421E4E148003DCED5 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = 08B5706321E4E148003DCED5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		08EC455221B19BCF00BE4EA0 /* libAirMaps.a */ = {
@@ -1723,6 +1751,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilang.reactnative.ChildrenCare;
+				PRODUCT_MODULE_NAME = ChindrenCare;
 				PRODUCT_NAME = ChindrenCare;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1748,6 +1777,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilang.reactnative.ChildrenCare;
+				PRODUCT_MODULE_NAME = ChindrenCare;
 				PRODUCT_NAME = ChindrenCare;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
