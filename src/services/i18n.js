@@ -3,6 +3,7 @@ import I18n from 'react-native-i18n';
 
 // Import all locales
 import en from '../../locale/en.json';
+import ja from '../../locale/ja.json';
 // import he from './he.json';
 
 // Should the app fallback to English if user locale doesn't exists
@@ -10,7 +11,8 @@ I18n.fallbacks = true;
 
 // Define the supported translations
 I18n.translations = {
-  en
+  en,
+  ja
 //   he
 };
 

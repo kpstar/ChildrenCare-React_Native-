@@ -12,7 +12,16 @@ exports.sendChildrenNotification = functions.database.ref('/children/{parent_id}
     console.log('Parent Id = ', parent_id);
     console.log('Children Id = ', children_id);
     // event.data.ref('news/').set({new: 'adfasdf'});
-    // return true;
+    return true;
+    // return sendMessage(parent_id);
+});
+
+exports.sendChildrenNotification = functions.database.ref('/children/{parent_id}/{children_id}/status').onUpdate((snapshot, event) => {
+    const parent_id = event.params.parent_id;
+    const children_id = event.params.children_id;
+
+    console.log('Parent Id = ', parent_id);
+    console.log('Children Id = ', children_id);
     return sendMessage(parent_id);
 });
 

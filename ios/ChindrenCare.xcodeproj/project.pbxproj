@@ -15,6 +15,7 @@
 		00E356F31AD99517003FC87E /* ChindrenCareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ChindrenCareTests.m */; };
 		08223CA1219E8FE4007517FA /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08223C9F219E8FB8007517FA /* libRNCamera.a */; };
 		08223CDD219E94A0007517FA /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08223CDA219E9494007517FA /* libReactNativePermissions.a */; };
+		08332D5721EC3E8A000C2780 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08332D5421EC3E72000C2780 /* libRNI18n.a */; };
 		088E071A21ACD7DA00CC2E3C /* libRNViewShot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E071921ACD7AF00CC2E3C /* libRNViewShot.a */; };
 		088E072421AD1BCC00CC2E3C /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E072121AD1B9800CC2E3C /* libRNFS.a */; };
 		088E072B21AD332300CC2E3C /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E072A21AD330C00CC2E3C /* libRCTCameraRoll.a */; };
@@ -118,6 +119,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
 			remoteInfo = ReactNativePermissions;
+		};
+		08332D5321EC3E72000C2780 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08332D4E21EC3E71000C2780 /* RNI18n.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNI18n;
+		};
+		08332D5521EC3E72000C2780 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08332D4E21EC3E71000C2780 /* RNI18n.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6476C4051EEAA69700B10F51;
+			remoteInfo = "RNI18n-tvOS";
 		};
 		088E071821ACD7AF00CC2E3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -413,6 +428,8 @@
 		00E356F21AD99517003FC87E /* ChindrenCareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChindrenCareTests.m; sourceTree = "<group>"; };
 		08223C75219E8FB8007517FA /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		08223CB0219E9493007517FA /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
+		08332D1F21EC3896000C2780 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		08332D4E21EC3E71000C2780 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		088E071421ACD7AF00CC2E3C /* RNViewShot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNViewShot.xcodeproj; path = "../node_modules/react-native-view-shot/ios/RNViewShot.xcodeproj"; sourceTree = "<group>"; };
 		088E071B21AD1B9800CC2E3C /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		088E072521AD330B00CC2E3C /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
@@ -478,6 +495,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08332D5721EC3E8A000C2780 /* libRNI18n.a in Frameworks */,
 				088E072B21AD332300CC2E3C /* libRCTCameraRoll.a in Frameworks */,
 				088E072421AD1BCC00CC2E3C /* libRNFS.a in Frameworks */,
 				088E071A21ACD7DA00CC2E3C /* libRNViewShot.a in Frameworks */,
@@ -614,6 +632,15 @@
 			isa = PBXGroup;
 			children = (
 				08223CDA219E9494007517FA /* libReactNativePermissions.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		08332D4F21EC3E71000C2780 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				08332D5421EC3E72000C2780 /* libRNI18n.a */,
+				08332D5621EC3E72000C2780 /* libRNI18n-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -785,6 +812,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				08332D4E21EC3E71000C2780 /* RNI18n.xcodeproj */,
 				08B5703321E4E148003DCED5 /* RNImagePicker.xcodeproj */,
 				08EC454D21B19BCE00BE4EA0 /* AirMaps.xcodeproj */,
 				088E072521AD330B00CC2E3C /* RCTCameraRoll.xcodeproj */,
@@ -951,6 +979,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = VA9FS99NC9;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1056,6 +1085,10 @@
 					ProjectRef = 088E071B21AD1B9800CC2E3C /* RNFS.xcodeproj */;
 				},
 				{
+					ProductGroup = 08332D4F21EC3E71000C2780 /* Products */;
+					ProjectRef = 08332D4E21EC3E71000C2780 /* RNI18n.xcodeproj */;
+				},
+				{
 					ProductGroup = 08B5703421E4E148003DCED5 /* Products */;
 					ProjectRef = 08B5703321E4E148003DCED5 /* RNImagePicker.xcodeproj */;
 				},
@@ -1122,6 +1155,20 @@
 			fileType = archive.ar;
 			path = libReactNativePermissions.a;
 			remoteRef = 08223CD9219E9494007517FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		08332D5421EC3E72000C2780 /* libRNI18n.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNI18n.a;
+			remoteRef = 08332D5321EC3E72000C2780 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		08332D5621EC3E72000C2780 /* libRNI18n-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNI18n-tvOS.a";
+			remoteRef = 08332D5521EC3E72000C2780 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		088E071921ACD7AF00CC2E3C /* libRNViewShot.a */ = {
@@ -1663,6 +1710,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				13B07FB21A68108700A75B9A /* Base */,
+				08332D1F21EC3896000C2780 /* ja */,
 			);
 			name = LaunchScreen.xib;
 			path = ChindrenCare;
@@ -1736,6 +1784,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChindrenCare/ChindrenCare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = VA9FS99NC9;
@@ -1753,6 +1803,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilang.reactnative.ChildrenCare;
 				PRODUCT_MODULE_NAME = ChindrenCare;
 				PRODUCT_NAME = ChindrenCare;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1763,6 +1814,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChindrenCare/ChindrenCare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VA9FS99NC9;
 				HEADER_SEARCH_PATHS = (
@@ -1779,6 +1832,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilang.reactnative.ChildrenCare;
 				PRODUCT_MODULE_NAME = ChindrenCare;
 				PRODUCT_NAME = ChindrenCare;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1925,6 +1979,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1978,6 +2033,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

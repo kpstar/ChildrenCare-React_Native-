@@ -1,0 +1,95 @@
+{
+    "app_name":{
+        "value": "ただいま"
+    },
+    "login_parent_title":{
+        "value": "おや"
+    },
+    "login_children_title":{
+        "value": "こども"
+    },
+    "login_button_email_title":{
+        "value": "めーるあどれすでろぐいん"
+    },
+    "login_button_phone_title":{
+        "value": "でんわばんごうでろぐいん"
+    },
+    "signup_button_email_title":{
+        "value": "めーるあどれすでとうろく"
+    },
+    "signup_button_phone_title":{
+        "value": "でんわばんごうでとうろく"
+    },
+    "signup_mode_button_title":{
+        "value": "あかうんとはもうもってる？"
+    },
+    "login_mode_button_title":{
+        "value": "あたらしいあかうんとをつくる？"
+    },
+    "login_button_scanqr_title":{
+        "value": "QRこーどをかざして"
+    },
+    "login_button_library_title":{
+        "value": "ふぉるだからQRをさがす"
+    },
+    "mobile_number_text_placeholder":{
+        "value": "でんわばんごうをにゅうりょく"
+    },
+    "terms_and_condition_title":{
+        "value": "きやく"
+    },
+    "login_text_email_placeholder":{
+        "value": "めーる"
+    },
+    "login_text_password_placeholder":{
+        "value": "ぱすわーど"
+    },
+    "email_login_button_title":{
+        "value": "ろぐいん"
+    },
+    "email_signup_button_title":{
+        "value": "とうろく"
+    },
+    "parent_family_name_placeholder_title":{
+        "value": "みょうじは？"
+    },
+    "parent_set_home_button_title":{
+        "value": "いえのばしょをとうろく"
+    },
+    "parent_add_children_button_title":{
+        "value": "こどもをついかする"
+    },
+    "child_name_label_placeholder_title":{
+        "value": "こどもをついかする"
+    },
+    "child_age_label_placeholder_title":{
+        "value": "ねんれい"
+    },
+    "child_contact_number_label_placeholder_title":{
+        "value": "きんきゅうれんらくさき"
+    },
+    "child_generate_qr_button_title":{
+        "value": "じぶんのQRをつくる"
+    },
+    "parent_qr_code_desc_title":{
+        "value": "こどものQRをかざそう"
+    },
+    "parent_qr_save_button_title":{
+        "value": "ふぉるだにほぞん"
+    },
+    "children_qr_scan_complete_button_title":{
+        "value": "よみとりかんりょう"
+    },
+    "children_qr_description_label_title":{
+        "value": "いえについたらじどうてきにおやにれんらくがいきます"
+    },
+    "children_qr_accept_gps_button_title":{
+        "value": "GPSのじゅしんをきょかする"
+    },
+    "main_manually_update_button_title":{
+        "value": "いちじょうほうをこうしんする"
+    },
+    "main_panic_mode_button_title":{
+        "value": "きんきゅうじたい"
+    }
+}

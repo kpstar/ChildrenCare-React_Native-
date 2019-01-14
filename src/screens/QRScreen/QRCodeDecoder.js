@@ -56,7 +56,7 @@ export default class App extends React.Component {
         return;
     }
     let p_uid = data.split('/')[0];
-    let my_uid = data.split('/')[0];
+    let my_uid = data.split('/')[1];
     let device_token = firebase.messaging().getToken()
     .then(token => {
         firebase.database().ref('children/' + p_uid).child(my_uid).update({device_token: token});

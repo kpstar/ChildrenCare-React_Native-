@@ -65,8 +65,7 @@ export default class ChildrenInfo extends Component {
             alert(strings(errorKey));
             return;
         }
-        let ch_uid = firebase.database().ref('children/').child(parentUid).push({name: childName, age, contactNumber, device_token: '', location: {lat:0, lon: 0}});
-        console.log('Children UId = ', ch_uid.key);
+        let ch_uid = firebase.database().ref('children/').child(parentUid).push({name: childName, age, contactNumber, device_token: '', location: {lat:0, lon: 0}, status: false});
         let qrCodeTxt = parentUid + '/' + ch_uid.key;
         this.props.navigation.navigate(
             'QRCodeGenScreen',

@@ -66,8 +66,13 @@ export default class MapScreen extends Component {
         let lat = 0, lon = 0;
         firebase.database().ref('parents/').child(uid).once('location')
         .then((data)=>{
-            lat = data._value.location.lat;
-            lon = data._value.location.lon;
+            if (data._value.location) {
+                lat = data._value.location.lat;
+                lon = data._value.location.lon;
+            } else {
+                lat = 0;
+                lon = 0;
+            }
             if (lat == 0 && lon == 0) {
                 getCurrentLocation().then(position => {
                     if (position) {

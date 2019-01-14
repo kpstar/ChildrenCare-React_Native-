@@ -77,7 +77,12 @@ export default class ChildMapScreen extends Component {
     }
 
     onEmergency() {
-        
+        let {p_uid, my_uid} = this.state;
+        console.log('Uids = ', p_uid + '/' +my_uid);
+        firebase.database().ref('children/' + p_uid).child(my_uid).update({name: 'aaa'})
+        .then((data)=>{
+            console.log('Update', data);
+        });
         this.setState({visible: true});
     }
 
@@ -115,13 +120,14 @@ export default class ChildMapScreen extends Component {
         let lat = 0, lon = 0;
         let {navigation} = this.props;
         let p_uid = navigation.getParam('p_uid');
-
         let my_uid = navigation.getParam('my_uid');
         this.setState({p_uid, my_uid});
         firebase.database().ref('parents/').child(p_uid).once('location')
         .then((data)=>{
-            lat = data._value.location.lat;
-            lon = data._value.location.lon;
+            if (data._value.location) {
+                lat = data._value.location.lat;
+                lon = data._value.location.lon;
+            }
             this.setState({
                 region: {
                     latitude: lat,

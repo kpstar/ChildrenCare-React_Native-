@@ -30,11 +30,15 @@ export default class QRCodeScan extends Component {
         } else {
             return;
         }
-        let device_token = firebase.messaging().getToken()
-        .then(token => {
-            firebase.database().ref('children/' + p_uid).child(my_uid).update({device_token: token});
-            this.setState({qrCodeScan: true});
-        });
+        // firebase.database().ref('children/' + p_uid).child(my_uid).once()
+        // .then((snapshot) => {
+        //     console.log
+        // })
+        // let device_token = firebase.messaging().getToken()
+        // .then(token => {
+        //     firebase.database().ref('children/' + p_uid).child(my_uid).update({device_token: token});
+        //     this.setState({qrCodeScan: true});
+        // });
         return;
     }
 

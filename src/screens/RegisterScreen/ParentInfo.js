@@ -28,7 +28,12 @@ export default class ParentInfo  extends Component {
         let uid = firebase.auth().currentUser.uid;
         firebase.database().ref('parents/').child(uid).once('family_name')
         .then((data)=>{
-            this.setState({uid, familyName:data._value.family_name, loading: false});
+            console.log('Data = ', data);
+            if (data._value)
+                this.setState({uid, familyName:data._value.family_name, loading: false});
+            else {
+                this.setState({uid, familyName:'', loading: false});
+            }
         });        
     }
 
