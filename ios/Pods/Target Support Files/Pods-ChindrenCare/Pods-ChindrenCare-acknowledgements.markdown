@@ -1861,6 +1861,10 @@ third-party archives.
    limitations under the License.
 
 
+## Google-Mobile-Ads-SDK
+
+Copyright 2018 Google
+
 ## GoogleAppMeasurement
 
 Copyright 2018 Google

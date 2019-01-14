@@ -137,6 +137,10 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-maps')
+    compile project(':react-native-i18n')
+    compile project(':react-native-firebase')
+    compile project(':react-native-admob')
     compile project(':react-native-image-picker')
     compile project(':react-native-vector-icons')
     compile project(':react-native-fs')

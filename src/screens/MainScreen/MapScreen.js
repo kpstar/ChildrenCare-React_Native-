@@ -88,6 +88,8 @@ export default class MapScreen extends Component {
                                 longitude: position.coords.longitude,
                             },
                         });
+                        let uid = firebase.auth().currentUser.uid;
+                        firebase.database().ref('parents/').child(uid).update({location:{lat: position.coords.latitude, lon: position.coords.longitude}});
                     }
                 });
             } else {

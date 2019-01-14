@@ -10,6 +10,7 @@ import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimen
 import { Container, Button, View } from 'native-base';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { AdMobBanner } from 'react-native-admob';
 import { strings } from '../../services/i18n';
 
 export default class Parent extends Component {
@@ -71,8 +72,14 @@ export default class Parent extends Component {
                             <Button block onPress={this.onPhoneLogin.bind(this)} style={styles.buttonPhone}><Text style={styles.text}>{strings('signup_button_phone_title.value')}</Text></Button>
                             <Button block onPress={this.onEmailLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('signup_button_email_title.value')}</Text></Button>
                             <TouchableOpacity onPress={this.onLoginMode.bind(this)} style={styles.buttonTwo}><Text style={styles.text}>{strings('signup_mode_button_title.value')}</Text></TouchableOpacity> 
-                        </View> }                        
+                        </View> }
                 </Container>
+                <AdMobBanner
+                    adSize="fullBanner"
+                    adUnitID="ca-app-pub-8622592331654235/4043224001"
+                    testDevices={[AdMobBanner.simulatorId]}
+                    onAdFailedToLoad={error => console.error(error)}
+                /> 
             </Container>
         )
     }

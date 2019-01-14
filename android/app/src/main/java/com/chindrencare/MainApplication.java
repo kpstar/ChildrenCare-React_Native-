@@ -3,6 +3,10 @@ package com.chindrencare;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import com.sbugert.rnadmob.RNAdMobPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.rnfs.RNFSPackage;
@@ -35,6 +39,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new MapsPackage(),
+            new RNI18nPackage(),
+            new RNFirebasePackage(),
+            new RNAdMobPackage(),
             new ImagePickerPackage(),
             new VectorIconsPackage(),
             new RNFSPackage(),
