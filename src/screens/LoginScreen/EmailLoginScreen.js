@@ -17,8 +17,8 @@ export default class EmailLogin extends Component {
     constructor(props){
         super(props)
         this.state = {
-            email: 'kpstar.mc@gmail.com',
-            password: 'no touch',
+            email: '',
+            password: '',
             error: '',
             loading: false,
             uid: '',

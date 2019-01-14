@@ -16,6 +16,7 @@
 		08223CA1219E8FE4007517FA /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08223C9F219E8FB8007517FA /* libRNCamera.a */; };
 		08223CDD219E94A0007517FA /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08223CDA219E9494007517FA /* libReactNativePermissions.a */; };
 		08332D5721EC3E8A000C2780 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08332D5421EC3E72000C2780 /* libRNI18n.a */; };
+		08332D9F21EC505A000C2780 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08332DA121EC505A000C2780 /* InfoPlist.strings */; };
 		088E071A21ACD7DA00CC2E3C /* libRNViewShot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E071921ACD7AF00CC2E3C /* libRNViewShot.a */; };
 		088E072421AD1BCC00CC2E3C /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E072121AD1B9800CC2E3C /* libRNFS.a */; };
 		088E072B21AD332300CC2E3C /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E072A21AD330C00CC2E3C /* libRCTCameraRoll.a */; };
@@ -428,8 +429,10 @@
 		00E356F21AD99517003FC87E /* ChindrenCareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChindrenCareTests.m; sourceTree = "<group>"; };
 		08223C75219E8FB8007517FA /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		08223CB0219E9493007517FA /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
-		08332D1F21EC3896000C2780 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		08332D4E21EC3E71000C2780 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
+		08332DA021EC505A000C2780 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		08332DA221EC50D6000C2780 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		08332DA321EC50D7000C2780 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		088E071421ACD7AF00CC2E3C /* RNViewShot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNViewShot.xcodeproj; path = "../node_modules/react-native-view-shot/ios/RNViewShot.xcodeproj"; sourceTree = "<group>"; };
 		088E071B21AD1B9800CC2E3C /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		088E072521AD330B00CC2E3C /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
@@ -734,6 +737,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				08332DA121EC505A000C2780 /* InfoPlist.strings */,
 			);
 			name = ChindrenCare;
 			sourceTree = "<group>";
@@ -1007,6 +1011,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1462,6 +1467,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				08A013C9219D086100021F80 /* GoogleService-Info.plist in Resources */,
 				86FD94411C7044D5B0C87E1D /* Entypo.ttf in Resources */,
+				08332D9F21EC505A000C2780 /* InfoPlist.strings in Resources */,
 				67EA4A250A3C4588947FA472 /* EvilIcons.ttf in Resources */,
 				7FCB72EAC9BF4B1BBC85DCBE /* Feather.ttf in Resources */,
 				13BEB759DC8E40BD9B9F8F11 /* FontAwesome.ttf in Resources */,
@@ -1706,11 +1712,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		08332DA121EC505A000C2780 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08332DA021EC505A000C2780 /* en */,
+				08332DA321EC50D7000C2780 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				13B07FB21A68108700A75B9A /* Base */,
-				08332D1F21EC3896000C2780 /* ja */,
+				08332DA221EC50D6000C2780 /* ja */,
 			);
 			name = LaunchScreen.xib;
 			path = ChindrenCare;
