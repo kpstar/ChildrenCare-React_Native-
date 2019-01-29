@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Image,
+  ImageBackground,
   TouchableOpacity,
   AsyncStorage,
   Text,
@@ -12,9 +13,8 @@ import QRCode from 'react-native-qrcode';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, View } from 'native-base';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import BackButton from '../../components/BackButton';
 import { strings } from '../../services/i18n';
-import images from '../../theme/images';
-import firebase from 'react-native-firebase';
 
 export default class QRCodeScan extends Component {
 
@@ -63,14 +63,9 @@ export default class QRCodeScan extends Component {
         const {qrCodeScan, qrCode} = this.state;
         return (
             <Container style={globalStyles.container}>
-                <View style={globalStyles.header}>
-                    <TouchableOpacity onPress={this.goBack}>
-                        <Image
-                            source={ Images.backBtn }
-                            style={ globalStyles.backBtn }></Image>
-                    </TouchableOpacity>
-                </View>
+                <BackButton onPress={()=>this.props.navigation.goBack()}/>
                 <Container style={styles.innerBox}>
+                    <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
                     { qrCodeScan ?
                         <View style={styles.scannedView}>
                             <QRCode 
@@ -148,5 +143,12 @@ const styles = StyleSheet.create({
     text: {
         color: Colors.white,
         fontSize: FontSizes.medium
-    }
+    },
+    imageBk: {
+        position: 'absolute',
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
+        left: 0,
+        top: 0
+    },
 });

@@ -64,22 +64,13 @@ export default class ChildMapScreen extends Component {
     }
 
     onManualUpdate() {
-        const message = new firebase.messaging.RemoteMessage()
-            .setMessageId('unique id')
-            .setTo('senderId@gcm.googleapis.com')
-            .setData({
-                key1: 'value1',
-                key2: 'value2',
-            });
-        // Send the message
-        firebase.messaging().sendMessage(message);
-        this.setState({visible: true});
+        
     }
 
     onEmergency() {
         let {p_uid, my_uid} = this.state;
         console.log('Uids = ', p_uid + '/' +my_uid);
-        firebase.database().ref('children/' + p_uid).child(my_uid).update({name: 'aaa'})
+        firebase.database().ref('children/' + p_uid).child(my_uid).update({status: 'emergency'})
         .then((data)=>{
             console.log('Update', data);
         });

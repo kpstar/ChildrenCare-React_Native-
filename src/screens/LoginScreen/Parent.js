@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Image,
-  TouchableOpacity,
-  Text
+  Alert,
+  Text,
+  ImageBackground
 } from 'react-native';
 import { Images, Colors, globalStyles, FontSizes } from '../../theme';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, View } from 'native-base';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { AdMobBanner } from 'react-native-admob';
 import { strings } from '../../services/i18n';
+import { Banner } from '../../components/Ads';
+import BackButton from '../../components/BackButton';
 
 export default class Parent extends Component {
 
@@ -19,21 +21,27 @@ export default class Parent extends Component {
         super(props)
         this.unsubscribe = null;
         this.state = {
-            loginStatus: true,
             loading: true,
             user: '',
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        const {navigation} = this.props;
         this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({loading: false});
-                this.props.navigation.navigate('ParentInfoScreen');
-            } else {
-                // Initialize all variables
-                this.setState({loading: false});
+            this.setState({loading: false});
+            if (!user) return;
+            if (user.phoneNumber) {
+                firebase.auth().signOut();
+                navigation.navigate("EmailLoginScreen", {loginStatus: true});
+                Alert.alert('Success', 'Successfully created your account', [
+                    {text: 'OK', style: 'cancel'}
+                ]);
+                return;
+            } else if (user.email) {
+                navigation.navigate('ParentInfoScreen');
             }
+            return;
         });
     }
 
@@ -42,73 +50,41 @@ export default class Parent extends Component {
     }
 
     render() {
-        const {loginStatus} = this.state;
         return (
             <Container style={globalStyles.container}>
-                <View style={globalStyles.header}>
-                    <TouchableOpacity onPress={this.goBack}>
-                        <Image
-                            source={ Images.backBtn }
-                            style={ globalStyles.backBtn }></Image>
-                    </TouchableOpacity>
-                </View>
+                <BackButton onPress={()=>this.props.navigation.goBack()}/>
                 <Container style={styles.innerBox}>
+                    <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
                     <Spinner
                         visible={this.state.loading}
-                        textContent={strings('spinner_loading_.value')}
+                        textContent={strings('spinner_loading_information.value')}
                         textStyle={styles.spinnerTextStyle}
                     />
                     <Image style={styles.image}
                         source={Images.parent}>
                     </Image>
-                    {   loginStatus ?
-                        <View style={styles.view}>
-                            <Button block onPress={this.onPhoneLogin.bind(this)} style={styles.buttonPhone}><Text style={styles.text}>{strings('login_button_phone_title.value')}</Text></Button>
-                            <Button block onPress={this.onEmailLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('login_button_email_title.value')}</Text></Button>
-                            <TouchableOpacity onPress={this.onRegisterMode.bind(this)} style={styles.buttonTwo}><Text style={styles.text}>{strings('login_mode_button_title.value')}</Text></TouchableOpacity> 
-                        </View>
-                        :
-                        <View style={styles.view}>
-                            <Button block onPress={this.onPhoneLogin.bind(this)} style={styles.buttonPhone}><Text style={styles.text}>{strings('signup_button_phone_title.value')}</Text></Button>
-                            <Button block onPress={this.onEmailLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('signup_button_email_title.value')}</Text></Button>
-                            <TouchableOpacity onPress={this.onLoginMode.bind(this)} style={styles.buttonTwo}><Text style={styles.text}>{strings('signup_mode_button_title.value')}</Text></TouchableOpacity> 
-                        </View> }
+                    <View style={styles.view}>
+                        <Button block onPress={this.onLogin.bind(this)} style={styles.buttonPhone}><Text style={styles.text}>{strings('login_button_email_title.value')}</Text></Button>
+                        <Button block onPress={this.onSignUp.bind(this)} style={styles.button}><Text style={styles.text}>{strings('signup_button_email_title.value')}</Text></Button>
+                    </View>
                 </Container>
-                <AdMobBanner
-                    adSize="fullBanner"
-                    adUnitID="ca-app-pub-8622592331654235/4043224001"
-                    testDevices={[AdMobBanner.simulatorId]}
-                    onAdFailedToLoad={error => console.error(error)}
-                /> 
+                <Banner />
             </Container>
         )
     }
 
-    onPhoneLogin() {
-        this.props.navigation.navigate("PhoneLoginScreen", {loginStatus: this.state.loginStatus});
+    onLogin() {
+        this.props.navigation.navigate("EmailLoginScreen", {loginStatus: true});
     }
 
-    onEmailLogin() {
-        this.props.navigation.navigate("EmailLoginScreen", {loginStatus: this.state.loginStatus});
-    }
-
-    onRegisterMode() {
-        this.setState({loginStatus: false});
-    }
-
-    onLoginMode() {
-        this.setState({loginStatus: true});
-    }
-
-    goBack = () => {
-        this.props.navigation.goBack();
+    onSignUp() {
+        this.props.navigation.navigate("EmailLoginScreen", {loginStatus: false});
     }
 }
 
 const styles = StyleSheet.create({
     innerBox: {
         marginTop: 0,
-        backgroundColor: Colors.Red,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -124,6 +100,13 @@ const styles = StyleSheet.create({
         padding: 20,
         marginTop: 10,
         backgroundColor: Colors.buttonColor,
+    },
+    imageBk: {
+        position: 'absolute',
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
+        left: 0,
+        top: 0
     },
     buttonPhone: {
         padding: 20,

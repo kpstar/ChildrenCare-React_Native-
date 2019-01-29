@@ -1,6 +1,9 @@
 PODS:
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
+  - Firebase/AdMob (5.11.0):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (~> 7.35)
   - Firebase/Auth (5.11.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
@@ -167,6 +170,7 @@ PODS:
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - Firebase/AdMob (~> 5.11.0)
   - Firebase/Auth (~> 5.11.0)
   - Firebase/Core (~> 5.11.0)
   - Firebase/Database (~> 5.11.0)
@@ -267,6 +271,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 1ef0e2d579b18f37d5de63bb6cf295bed8f8492c
+PODFILE CHECKSUM: b83b1c5ad7caf7b1f65fbb50e1c6e788950a7e1a
 
 COCOAPODS: 1.6.0.beta.1

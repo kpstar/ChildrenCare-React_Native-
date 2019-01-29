@@ -1,42 +1,44 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Text, AsyncStorage, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, Text, AsyncStorage, Image, StyleSheet, ImageBackground } from 'react-native';
 import { Container, Item, Label, Input } from 'native-base';
 import { Images, Colors, globalStyles, FontSizes} from '../../theme';
 import firebase from 'react-native-firebase';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import CodeInput from 'react-native-confirmation-code-input';
 import { strings } from '../../services/i18n';
+import BackButton from '../../components/BackButton';
 
 export default class PhoneVerificationScreen extends Component {
   constructor(props) {
     super(props);
     this.unsubscribe = null;
     this.state = {
+      phone: '',
       user: null,
       confirmResult: null,
+      emailUid: '',
     };
   }
 
   componentDidMount() {
     let {navigation} = this.props;
     let confirmResult = navigation.getParam('confirmResult', null);
-    this.setState({confirmResult});
+    let emailUid = navigation.getParam('emailUid', null);
+    this.setState({confirmResult, emailUid});
   }
 
   confirmCode = (code) => {
-    const { confirmResult } = this.state;
+    const { confirmResult, emailUid } = this.state;
     if (confirmResult) {
       confirmResult.confirm(code)
         .then((user) => {
           let token = AsyncStorage.getItem('device_token')
           .then(token=>{
-              let uid = firebase.auth().currentUser.uid;
-              firebase.database().ref('parents/').child(uid).update({device_token: token})
+              firebase.database().ref('parents/').child(emailUid).update({device_token: token, phone: user.phoneNumber})
               .then((data)=>{
                   console.log('Update', data);
               });
           });
-          this.props.navigation.navigate("ParentInfoScreen");
         })
         .catch(error => alert(error));
     }
@@ -46,21 +48,12 @@ export default class PhoneVerificationScreen extends Component {
     firebase.auth().signOut();
   }
 
-  goBack = () => {
-    this.props.navigation.goBack();
-  }
-
   render() {
     return (
         <Container style={globalStyles.container}>
-            <View style={globalStyles.header}>
-                <TouchableOpacity onPress={this.goBack}>
-                    <Image
-                        source={ Images.backBtn }
-                        style={ globalStyles.backBtn }></Image>
-                </TouchableOpacity>
-            </View>
+            <BackButton onPress={()=>this.props.navigation.goBack()}/>
             <Container style={styles.innerBox}>
+                <ImageBackground source={Images.background} style={styles.imageBk} ></ImageBackground>
                 <Image style={styles.image}
                     source={Images.setting}>
                 </Image>
@@ -129,5 +122,12 @@ const styles = StyleSheet.create({
       marginBottom: 20,
       width: responsiveWidth(40),
       height: responsiveWidth(40),
-    }
+    },
+    imageBk: {
+      position: 'absolute',
+      width: responsiveWidth(100),
+      height: responsiveHeight(100),
+      left: 0,
+      top: 0
+    },
 });

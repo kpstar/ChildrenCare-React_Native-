@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { Dimensions, Image, StyleSheet, TouchableOpacity, View, } from 'react-native';
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View, Button, Text } from 'react-native';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -30,6 +30,7 @@ import MapScreen from "./screens/MainScreen/MapScreen"
 import ChildMapScreen from "./screens/MainScreen/ChildMapScreen"
 import EmergencyScreen from "./screens/MainScreen/Emergency"
 import QRCodeGenerator from "./screens/QRScreen/QRCodeGenerator"
+import store from './Store'
 // import ChildrenQR from "./screens/InfoScreen/ChildrenQR"
 
 const headerStyle = { 
@@ -52,6 +53,7 @@ const MenuIcon = ({ openDrawer }) => {
         </TouchableOpacity>
     );
 }
+
 
 const EmptyIcon = ({ navigate }) => {
     return (
@@ -76,7 +78,7 @@ export const MapScreenStack = createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             headerStyle: headerStyle,
             headerLeft: <MenuIcon {...navigation} />,
-            headerRight: <EmptyIcon/>
+            headerRight: <Button style={{marginRight: 10}} title="Done" onPress={() => store.mapScreen.onSetLocation()} ></Button>
         }),
     },
 });
@@ -87,7 +89,7 @@ export const ChildMapScreenStack = createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             headerStyle: headerStyle,
             headerLeft: <MenuIcon {...navigation} />,
-            headerRight: <EmptyIcon/>
+            headerRight: <EmptyIcon />
         }),
     },
 });

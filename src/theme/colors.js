@@ -9,6 +9,7 @@ const colors = {
     pureRed: 'rgba(255,0,0, 0.5)',
 
     alphaRed: 'rgba(166,44,44,0.5)',
+    alphaWhite: 'rgba(255,255,255,0.5)',
   
     backgroundPrimary: '#F5FCFF',
     backgroundSecondary : '#f4f4f4',

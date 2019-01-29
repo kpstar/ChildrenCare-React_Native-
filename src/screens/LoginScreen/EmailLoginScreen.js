@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Image,
-  TouchableOpacity,
+  ImageBackground,
   Text,
   AsyncStorage,
 } from 'react-native';
@@ -11,6 +11,8 @@ import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimen
 import { Container, Button, View, Item, Label, Input, Spinner } from 'native-base';
 import { strings } from '../../services/i18n';
 import firebase from 'react-native-firebase';
+import { Banner } from '../../components/Ads';
+import BackButton from '../../components/BackButton';
 
 export default class EmailLogin extends Component {
 
@@ -25,19 +27,18 @@ export default class EmailLogin extends Component {
         }
     }
 
+    componentDidMount() {
+        
+    }
+
     render() {
         const {navigation} = this.props;
         const loginStatus = navigation.getParam('loginStatus', false);
         return (
             <Container style={globalStyles.container}>
-                <View style={globalStyles.header}>
-                    <TouchableOpacity onPress={this.goBack}>
-                        <Image
-                            source={ Images.backBtn }
-                            style={ globalStyles.backBtn }></Image>
-                    </TouchableOpacity>
-                </View>
+                <BackButton onPress={()=>this.props.navigation.goBack()}/>
                 <Container style={styles.innerBox}>
+                    <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
                     <Image style={styles.image}
                         source={Images.parent}>
                     </Image>
@@ -45,7 +46,7 @@ export default class EmailLogin extends Component {
                         <View style={styles.view}>
                             <Item floatingLabel>
                                 <Label style={styles.label}>{strings('login_text_email_placeholder.value')}</Label>
-                                <Input autoCapitalize='none' style={styles.input} autoCorrect={false} value={this.state.email} onChangeText={text=>this.setState({email: text})}/>
+                                <Input keyboardType="email-address" autoCapitalize='none' style={styles.input} autoCorrect={false} value={this.state.email} onChangeText={text=>this.setState({email: text})}/>
                             </Item>
                             <Item floatingLabel style={globalStyles.marginTop}>
                                 <Label style={styles.label}>{strings('login_text_password_placeholder.value')}</Label>
@@ -57,15 +58,16 @@ export default class EmailLogin extends Component {
                         <View style={styles.view}>
                             <Item floatingLabel>
                                 <Label style={styles.label}>{strings('login_text_email_placeholder.value')}</Label>
-                                <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.email} onChangeText={text=>this.setState({email: text})}/>
+                                <Input keyboardType="email-address" autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.email} onChangeText={text=>this.setState({email: text})}/>
                             </Item>
                             <Item floatingLabel style={globalStyles.marginTop}>
                                 <Label style={styles.label}>{strings('login_text_password_placeholder.value')}</Label>
                                 <Input secureTextEntry={true} style={styles.input} value={this.state.password} onChangeText={text=>this.setState({password: text})} onSubmitEditing={this.onSignup.bind(this)}/>
                             </Item>
                             {this.renderButtonOrSpinner()}
-                        </View> }                        
+                        </View> }
                 </Container>
+                <Banner />
             </Container>
         )
     }
@@ -113,8 +115,8 @@ export default class EmailLogin extends Component {
                 .then(token=>{
                     let uid = firebase.auth().currentUser.uid;
                     this.setState({ error: '', loading: false });
-                    ref.child(uid).set({device_token: token, family_name: '', location: {lat:0, lon:0}, email});
-                    this.props.navigation.navigate("ParentInfoScreen", {family_name: ''});
+                    ref.child(uid).set({device_token: token, family_name: '', location: {lat:0, lon:0}, email, phone: ''});
+                    this.props.navigation.navigate("PhoneLoginScreen");
                 });
             })
             .catch((error) => {
@@ -122,16 +124,11 @@ export default class EmailLogin extends Component {
                 this.setState({error: error, loading: false});
             });
     }
-
-    goBack = () => {
-        this.props.navigation.goBack();
-    }
 }
 
 const styles = StyleSheet.create({
     innerBox: {
         marginTop: 0,
-        backgroundColor: Colors.Red,
         alignItems: 'center',
     },
     image: {
@@ -164,5 +161,12 @@ const styles = StyleSheet.create({
     },
     input: {
         color: Colors.white,
+    },
+    imageBk: {
+        position: 'absolute',
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
+        left: 0,
+        top: 0
     },
 });

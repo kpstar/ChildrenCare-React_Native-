@@ -8,6 +8,7 @@ import {
 import firebase from 'react-native-firebase';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import images from '../../theme/images';
+import store from '../../Store'
 
 export const getCurrentLocation = () => {
     return new Promise((resolve, reject) => {
@@ -37,7 +38,6 @@ export default class MapScreen extends Component {
                     coordinate={this.state.x}
                     onDragEnd={(e) => {
                         this.setState({ x: e.nativeEvent.coordinate, region: {latitude: e.nativeEvent.coordinate.latitude, longitude: e.nativeEvent.coordinate.longitude, latitudeDelta: 0.003, longitudeDelta: 0.003} });
-                        firebase.database().ref('parents/').child(uid).update({location:{lat: e.nativeEvent.coordinate.latitude, lon: e.nativeEvent.coordinate.longitude}});
                     }} >
                     <Image source={images.home} style={styles.imageHome}>
                     </Image>
@@ -47,6 +47,7 @@ export default class MapScreen extends Component {
     }    
     constructor(props) {
         super(props);
+        store.mapScreen = this;
         this.state = {
           region: {
             latitude: 39.7392,
@@ -59,6 +60,13 @@ export default class MapScreen extends Component {
             longitude: -104.9903,
           },
         };
+    }
+
+    onSetLocation() {
+        let {x} = this.state;
+        let uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('parents/').child(uid).update({location:{lat: x.latitude, lon: x.longitude}});
+        this.props.navigation.navigate('ParentInfoScreen');
     }
 
     componentDidMount() {

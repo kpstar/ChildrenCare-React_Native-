@@ -38,6 +38,9 @@
     "confirm_child_button_title":{
         "value": "Confirm"
     },
+    "profile_photo_change_title":{
+        "value": "Click to change photo"
+    },
     "mobile_number_text_placeholder":{
         "value": "Enter mobile number"
     },

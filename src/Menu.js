@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import { View, StatusBar, StyleSheet, Image, Alert} from 'react-native';
+import { View, ImageBackground, StyleSheet, Image, Alert, TouchableOpacity} from 'react-native';
 import {Colors, Images, FontSizes} from './theme';
 import { Container, Content, Button, Icon, Form, Item, Label, Input, Text, List, ListItem} from 'native-base';
 import { strings } from './services/i18n';
 import firebase from 'react-native-firebase';
 import { StackActions, NavigationActions } from 'react-navigation';
-import { responsiveWidth } from 'react-native-responsive-dimensions';
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 
 export default class Menu extends Component {
     goto(key){
-        console.log("goto ", key)
         this.props.navigation.navigate(key)
     }
+
+    onProfileClick() {
+        
+    }
+
     render() {
         return (
             <Container style={styles.container}>
+                <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
                 <Content>
                     <View style={styles.logo}>
-                        <Image 
-                            source={Images.profile}
-                            style={{width: 120, height: 120, resizeMode: 'cover', borderRadius: 60}}
-                        />
+                        <TouchableOpacity onPress={this.onProfileClick.bind(this)}>
+                            <Image
+                                source={Images.profile}
+                                style={{width: 120, height: 120, resizeMode: 'cover', borderRadius: 60}}
+                            />
+                        </TouchableOpacity>
+                        <Label style={styles.text}>{strings('profile_photo_change_title.value')}</Label>
                     </View>
                     <List style={styles.list}>
                         <ListItem onPress={()=>{this.goto('ParentInfoStack')}}>
@@ -84,5 +92,16 @@ const styles = StyleSheet.create({
     logoText: {
         fontSize: 24,
         fontWeight: 'bold'
-    }
+    },
+    text: {
+        color: Colors.white,
+        marginTop: 10,
+    },
+    imageBk: {
+        position: 'absolute',
+        width: responsiveWidth(200/3),
+        height: responsiveHeight(100),
+        left: 0,
+        top: 0
+    },
 })

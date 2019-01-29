@@ -6,9 +6,10 @@ const images = {
     backBtn: require('../images/backBtn.png'),
     menuBtn: require('../images/menu.png'),
     success: require('../images/success.png'),
-    profile: require('../images/logo_profile.jpg'),
+    profile: require('../images/logo_profile.png'),
     home: require('../images/home.png'),
     emptyQR: require('../images/emptyQR.png'),
+    background: require('../images/background.png'),
     location: require('../images/location.png'),
 }
 

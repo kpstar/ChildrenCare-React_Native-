@@ -3,32 +3,31 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  ImageBackground,
   Text
 } from 'react-native';
 import { Images, Colors, globalStyles, FontSizes } from '../../theme';
-import { responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions'
+import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions'
 import { Container, Button, View } from 'native-base';
+import { Banner } from '../../components/Ads';
 import { strings } from '../../services/i18n';
+import BackButton from '../../components/BackButton';
 
 export default class Children extends Component {
 
     render() {
         return (
             <Container style={globalStyles.container}>
-                <View style={globalStyles.header}>
-                    <TouchableOpacity onPress={this.goBack}>
-                        <Image
-                            source={ Images.backBtn }
-                            style={ globalStyles.backBtn }></Image>
-                    </TouchableOpacity>
-                </View>
+                <BackButton onPress={()=>this.props.navigation.goBack()}/>
                 <Container style={styles.innerBox}>
+                    <ImageBackground source={Images.background} style={styles.imageBk} ></ImageBackground>
                     <Image style={styles.image}
                         source={Images.children}>
                     </Image>
                     <Button block onPress={this.onQRLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('login_button_scanqr_title.value')}</Text></Button>
                     <Button block onPress={this.onLibraryLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('login_button_library_title.value')}</Text></Button>              
                 </Container>
+                <Banner />
             </Container>
         )
     }
@@ -40,16 +39,11 @@ export default class Children extends Component {
     onLibraryLogin() {
         this.props.navigation.navigate("QRCodeDecoder");
     }
-
-    goBack = () => {
-        this.props.navigation.goBack();
-    }
 }
 
 const styles = StyleSheet.create({
     innerBox: {
         marginTop: 0,
-        backgroundColor: Colors.Red,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -57,6 +51,13 @@ const styles = StyleSheet.create({
         width: responsiveWidth(50),
         height: responsiveWidth(50),
         marginBottom: 40
+    },
+    imageBk: {
+        position: 'absolute',
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
+        left: 0,
+        top: 0
     },
     view: {
         width: responsiveWidth(80),

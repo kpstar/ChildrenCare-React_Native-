@@ -5,6 +5,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  ImageBackground,
   Alert,
   WebView,
 } from 'react-native';
@@ -13,6 +14,7 @@ import ImagePicker from 'react-native-image-picker';
 import { Container, Button, Item, Label, Input } from 'native-base';
 import { strings } from '../../services/i18n';
 import firebase from 'react-native-firebase';
+import BackButton from '../../components/BackButton';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import QRdecoder from 'react-native-qrimage-decoder';
 
@@ -35,18 +37,20 @@ export default class App extends React.Component {
     };
     let mimeType;
     ImagePicker.launchImageLibrary(options, (response)=>{
-      const ext = response.uri.substr(response.uri.lastIndexOf('.')).toLowerCase();
-      if (ext === '.jpg' || ext === '.jpeg' || ext === '.jpe') {
-        mimetype = 'image/jpeg';
-      } else if (ext === '.png') {
-        mimetype = 'image/png';
-      } else if (ext === '.gif') {
-        mimetype = 'image/gif';
-      }
-      if (mimetype) {
-        this.setState({
-          src: `data:${mimetype};base64,${response.data}`,
-        });
+      if (response.uri.length > 0) {
+        const ext = response.uri.substr(response.uri.lastIndexOf('.')).toLowerCase();
+        if (ext === '.jpg' || ext === '.jpeg' || ext === '.jpe') {
+          mimetype = 'image/jpeg';
+        } else if (ext === '.png') {
+          mimetype = 'image/png';
+        } else if (ext === '.gif') {
+          mimetype = 'image/gif';
+        }
+        if (mimetype) {
+          this.setState({
+            src: `data:${mimetype};base64,${response.data}`,
+          });
+        }
       }
     });
   }
@@ -62,13 +66,6 @@ export default class App extends React.Component {
         firebase.database().ref('children/' + p_uid).child(my_uid).update({device_token: token});
         this.props.navigation.navigate('ChildMapScreen', {p_uid, my_uid});
     });
-    // let p_uid = data.split("/")[0];
-    // let my_uid = data.split("/")[1];
-    // if (p_uid !== '' && my_uid !== '') {
-    //     this.setState({p_uid, my_uid});
-    // } else {
-    //     return;
-    // }
   }
 
   onError = (data) => {
@@ -83,14 +80,9 @@ export default class App extends React.Component {
   render() {
       return (
           <Container style={globalStyles.container}>
-              <View style={globalStyles.header}>
-                  <TouchableOpacity onPress={this.goBack}>
-                      <Image
-                          source={ Images.backBtn }
-                          style={ globalStyles.backBtn }></Image>
-                  </TouchableOpacity>
-              </View>
+              <BackButton onPress={()=>this.props.navigation.goBack()}/>
               <Container style={styles.innerBox}>
+                  <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
                   <Image style={styles.qrCode} source={this.state.src? {uri: this.state.src}: Images.emptyQR} />
                   { this.renderButton() }
                   <QRdecoder src={this.state.src} onSuccess={this.onSuccess} onError={this.onError} />
@@ -141,5 +133,12 @@ const styles = StyleSheet.create({
   label: {
       marginTop: 30,
       color: Colors.white,
+  },
+  imageBk: {
+    position: 'absolute',
+    width: responsiveWidth(100),
+    height: responsiveHeight(100),
+    left: 0,
+    top: 0
   },
 });

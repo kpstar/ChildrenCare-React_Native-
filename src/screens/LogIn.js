@@ -3,6 +3,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ImageBackground,
   View
 } from 'react-native';
 import { strings } from '../services/i18n';
@@ -14,6 +15,7 @@ export default class LogIn extends Component {
     render() {
         return (
             <Container style={styles.container}>
+                <ImageBackground source={Images.background}  style={styles.image} ></ImageBackground>
                 <View>
                     <Text style={styles.text}>{ strings('login_parent_title.value') }</Text>
                     <TouchableOpacity onPress={ () => this.onPress('ParentLoginScreen')}>
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: Colors.Red,
+        // backgroundColor: Colors.Red,
     },
     text: {
         color: Colors.white,
@@ -58,5 +60,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: responsiveWidth(50),
         height: responsiveWidth(50),
-    }
+    },
+    image: {
+        position: 'absolute',
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
+        left: 0,
+        top: 0
+    },
 });

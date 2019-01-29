@@ -9,6 +9,7 @@ import {
 import { Images, Colors, globalStyles } from '../../theme';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import firebase from 'react-native-firebase';
+import BackButton from '../../components/BackButton';
 import { Container, Button, Input, Item, Label } from 'native-base';
 import { strings } from '../../services/i18n';
 
@@ -32,6 +33,8 @@ export default class ChildrenInfo extends Component {
     render() {
         return (
             <Container style={styles.container}>
+                <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
+                <BackButton onPress={()=>this.props.navigation.goBack()}/>
                 <ImageBackground source={Images.children}  style={styles.image}></ImageBackground>
                 <Item floatingLabel style={styles.label}>
                     <Label style={styles.text}>{strings('child_name_label_placeholder_title.value')}</Label>
@@ -65,7 +68,7 @@ export default class ChildrenInfo extends Component {
             alert(strings(errorKey));
             return;
         }
-        let ch_uid = firebase.database().ref('children/').child(parentUid).push({name: childName, age, contactNumber, device_token: '', location: {lat:0, lon: 0}, status: false});
+        let ch_uid = firebase.database().ref('children/').child(parentUid).push({name: childName, age, contactNumber, device_token: '', location: {lat:0, lon: 0}, status: 'none'});
         let qrCodeTxt = parentUid + '/' + ch_uid.key;
         this.props.navigation.navigate(
             'QRCodeGenScreen',
@@ -111,5 +114,12 @@ const styles = StyleSheet.create({
     input: {
         width: responsiveWidth(80),
         color: Colors.white,
+    },
+    imageBk: {
+        position: 'absolute',
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
+        left: 0,
+        top: 0
     },
 });

@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { Images, Colors, FontSizes } from '../../theme';
 import firebase from 'react-native-firebase';
-import { responsiveWidth } from 'react-native-responsive-dimensions'
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
 import { Container, Button, View, Input, Item, Label } from 'native-base';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { strings } from '../../services/i18n';
@@ -40,6 +40,7 @@ export default class ParentInfo  extends Component {
     render() {
         return (
             <Container style={styles.container}>
+                <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
                 <Spinner
                     visible={this.state.loading}
                     textContent={strings('spinner_loading_information.value')}
@@ -132,5 +133,12 @@ const styles = StyleSheet.create({
     spinnerTextStyle: {
         color: Colors.white,
         fontSize: FontSizes.medium,
+    },
+    imageBk: {
+        position: 'absolute',
+        width: responsiveWidth(100),
+        height: responsiveHeight(100),
+        left: 0,
+        top: 0
     },
 });

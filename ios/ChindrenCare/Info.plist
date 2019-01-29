@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string/>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.756301725702-3vuv8v46or3rrtji6qs8lvh0a17gcvrq</string>
@@ -50,16 +50,24 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>To send information via bluetooth</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>To get information from calendar</string>
 	<key>NSCameraUsageDescription</key>
-	<string>To get the information from QRCode</string>
+	<string>To get child information from QRCode</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To get my location</string>
+	<string>To get location of me and children</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>To get information from microphone</string>
+	<key>NSMotionUsageDescription</key>
+	<string>To get user's motion information</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>To get image file from gallery</string>
+	<string>To get image and QRCode from gallery</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To get image file from gallery</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>For third-party library use.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
@@ -93,5 +101,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>To play Apple music for notification</string>
 </dict>
 </plist>
