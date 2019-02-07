@@ -3,22 +3,22 @@
         "value": "ただいま"
     },
     "login_parent_title":{
-        "value": "おや"
+        "value": "保護者"
     },
     "login_children_title":{
         "value": "こども"
     },
     "login_button_email_title":{
-        "value": "めーるあどれすでろぐいん"
+        "value": "メールアドレスでログイン"
     },
     "login_button_phone_title":{
-        "value": "でんわばんごうでろぐいん"
+        "value": "電話番号でログイン"
     },
     "signup_button_email_title":{
-        "value": "めーるあどれすでとうろく"
+        "value": "メールアドレスで新規登録"
     },
     "signup_button_phone_title":{
-        "value": "でんわばんごうでとうろく"
+        "value": "電話番号で新規登録"
     },
     "signup_mode_button_title":{
         "value": "あかうんとはもうもってる？"
@@ -27,46 +27,46 @@
         "value": "あたらしいあかうんとをつくる？"
     },
     "login_button_scanqr_title":{
-        "value": "QRこーどをかざして"
+        "value": "カメラでQRを読み取る"
     },
     "login_button_library_title":{
-        "value": "ふぉるだからQRをさがす"
+        "value": "フォルダからQRを読み取る"
     },
     "mobile_number_text_placeholder":{
-        "value": "でんわばんごうをにゅうりょく"
+        "value": "電話番号を入力してください"
     },
     "terms_and_condition_title":{
-        "value": "きやく"
+        "value": "利用規約"
     },
     "login_text_email_placeholder":{
-        "value": "めーる"
+        "value": "メールアドレス"
     },
     "login_text_password_placeholder":{
-        "value": "ぱすわーど"
+        "value": "パスワード"
     },
     "email_login_button_title":{
-        "value": "ろぐいん"
+        "value": "サインイン"
     },
     "email_signup_button_title":{
-        "value": "とうろく"
+        "value": "登録"
     },
     "parent_family_name_placeholder_title":{
-        "value": "みょうじは？"
+        "value": "名字を入力してください"
     },
     "parent_set_home_button_title":{
-        "value": "いえのばしょをとうろく"
+        "value": "自宅の所在地を設定してください"
     },
     "parent_add_children_button_title":{
-        "value": "こどもをついかする"
+        "value": "こどもを追加してください"
     },
     "child_name_label_placeholder_title":{
-        "value": "こどもをついかする"
+        "value": "こどもを追加してください"
     },
     "child_age_label_placeholder_title":{
-        "value": "ねんれい"
+        "value": "年齢"
     },
     "child_contact_number_label_placeholder_title":{
-        "value": "きんきゅうれんらくさき"
+        "value": "緊急連絡先"
     },
     "child_generate_qr_button_title":{
         "value": "じぶんのQRをつくる"
@@ -87,9 +87,54 @@
         "value": "GPSのじゅしんをきょかする"
     },
     "main_manually_update_button_title":{
-        "value": "いちじょうほうをこうしんする"
+        "value": "位置情報を更新する"
     },
     "main_panic_mode_button_title":{
-        "value": "きんきゅうじたい"
+        "value": "SOS"
+    },
+    "alert_empty_familyname_text": {
+        "value": "名字を入力してください"
+    },
+    "alert_empty_child_name_title":{
+        "value": "子供の名前を入力してください"
+    },
+    "alert_empty_child_age_title":{
+        "value": "子供の年齢を入力してください"
+    },
+    "alert_empty_child_number_title":{
+        "value": "緊急連絡先を入力してください"
+    },
+    "alert_empty_home_location":{
+        "value": "自宅の所在地を入力してください"
+    },
+    "drawer_menu_home":{
+        "value": "ホーム"
+    },
+    "drawer_menu_map":{
+        "value": "マップ"
+    },
+    "drawer_childmenu_home":{
+        "value": "ホーム"
+    },
+    "drawer_childmenu_emergency":{
+        "value": "緊急"
+    },
+    "drawer_menu_logout":{
+        "value": "ログアウト"
+    },
+    "drawer_menu_logout_title":{
+        "value": "間違いありませんか？"
+    },
+    "drawer_menu_logout_description":{
+        "value": "本当にログアウトしますか？"
+    },
+    "drawer_menu_logout_yes":{
+        "value": "はい"
+    },
+    "drawer_menu_logout_no":{
+        "value": "いいえ"
+    },
+    "drawer_menu_phone_number":{
+        "value": "電話番号を変更する"
     }
 }

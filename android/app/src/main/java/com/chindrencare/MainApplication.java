@@ -3,6 +3,8 @@ package com.chindrencare;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+import com.transistorsoft.rnbackgroundgeolocation.RNBackgroundGeolocation;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import io.invertase.firebase.RNFirebasePackage;
@@ -39,6 +41,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNBackgroundFetchPackage(),
+            new RNBackgroundGeolocation(),
             new MapsPackage(),
             new RNI18nPackage(),
             new RNFirebasePackage(),

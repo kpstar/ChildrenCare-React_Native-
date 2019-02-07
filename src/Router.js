@@ -30,6 +30,7 @@ import MapScreen from "./screens/MainScreen/MapScreen"
 import ChildMapScreen from "./screens/MainScreen/ChildMapScreen"
 import EmergencyScreen from "./screens/MainScreen/Emergency"
 import QRCodeGenerator from "./screens/QRScreen/QRCodeGenerator"
+import QRCodeLogin from "./screens/QRScreen/QRCodeLogin"
 import store from './Store'
 // import ChildrenQR from "./screens/InfoScreen/ChildrenQR"
 
@@ -155,6 +156,7 @@ export const PrimaryNav = createStackNavigator({
     ChildDrawerStack: {screen: ChildDrawerStack},
     ParentDrawerStack: {screen: ParentDrawerStack},
     QRCodeGenScreen: {screen: QRCodeGenerator},
+    QRCodeLoginScreen: {screen: QRCodeLogin},
 }, {
     navigationOptions: {
         gesturesEnabled: false,

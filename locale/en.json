@@ -125,7 +125,7 @@
     "main_manually_update_button_title":{
         "value": "Manually Update Location"
     },
-    "main_painc_mode_title":{
+    "main_painc_mode_button_title":{
         "value": "PANIC MODE"
     },
     "alert_empty_familyname_text": {
@@ -169,5 +169,8 @@
     },
     "drawer_menu_logout_no":{
         "value": "No"
+    },
+    "drawer_menu_phone_number":{
+        "value": "Change Phone Number"
     }
 }

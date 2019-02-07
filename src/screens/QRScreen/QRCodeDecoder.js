@@ -21,10 +21,13 @@ import QRdecoder from 'react-native-qrimage-decoder';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
+    this.self = this;
     this.state = {
       src: null,
       avatarSource: null,
+      p_uid: '',
+      my_uid: '',
+      isValid: false,
     };
   }
 
@@ -61,16 +64,28 @@ export default class App extends React.Component {
     }
     let p_uid = data.split('/')[0];
     let my_uid = data.split('/')[1];
-    let device_token = firebase.messaging().getToken()
-    .then(token => {
-        firebase.database().ref('children/' + p_uid).child(my_uid).update({device_token: token});
-        this.props.navigation.navigate('ChildMapScreen', {p_uid, my_uid});
+    if (p_uid.length < 10 || my_uid.length < 10) {
+      alert('Wrong QRCode image');
+      return;
+    }
+    let self = this;
+    firebase.database().ref('children/' + p_uid).child(my_uid).on('value', function(snapshot) {
+      console.log('Snapshot Value = ', snapshot.val());
+      let phone = snapshot.val().contactNumber;
+      if (phone.length > 7) {
+        self.setState({p_uid, my_uid, phone, isValid: true});
+      } else {
+        p_uid='';
+        my_uid='';
+        phone = '';
+        self.setState({p_uid, my_uid, phone, isValid: false});
+      }
     });
   }
 
   onError = (data) => {
-    this.alert(data);
-    this.setState({src: null, uri: null});
+    alert(data);
+    this.setState({src: null, uri: null, isValid: false});
   }
 
   goBack = () => {
@@ -92,11 +107,22 @@ export default class App extends React.Component {
   }
 
   confirmChild() {
-
+    let {p_uid, my_uid, phone} = this.state;
+    let self = this;
+    this.setState({error: '', loading: true});
+    firebase.auth().signInWithPhoneNumber(phone)
+          .then((confirmResult) => {
+            self.props.navigation.navigate('PhoneVerificationScreen', {confirmResult, p_uid, my_uid});
+            self.setState({ error: '', loading: false, });
+          })
+          .catch(error => {
+            self.setState({error, loading: false});
+            alert(error);
+          });
   }
 
   renderButton() {
-      if (!this.state.src) {
+      if (!this.state.isValid) {
         return <Button block onPress={this.openLibrary.bind(this)} style={styles.button}><Text style={styles.text}>{strings('import_photo_from_library_title.value')}</Text></Button>;
       } else {
         return <Button block onPress={this.confirmChild.bind(this)} style={styles.button}><Text style={styles.text}>{strings('confirm_child_button_title.value')}</Text></Button>;

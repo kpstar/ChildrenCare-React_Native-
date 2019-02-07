@@ -1,5 +1,8 @@
 PODS:
   - boost-for-react-native (1.63.0)
+  - CocoaLumberjack (3.5.0):
+    - CocoaLumberjack/Core (= 3.5.0)
+  - CocoaLumberjack/Core (3.5.0)
   - DoubleConversion (1.1.6)
   - Firebase/AdMob (5.11.0):
     - Firebase/Core
@@ -164,6 +167,11 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNBackgroundFetch (2.4.6):
+    - React
+  - RNBackgroundGeolocation (2.14.2):
+    - CocoaLumberjack (~> 3.0)
+    - React
   - RNVectorIcons (4.6.0):
     - React
   - yoga (0.57.5.React)
@@ -196,12 +204,15 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
+  - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
+    - CocoaLumberjack
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -236,6 +247,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-picker"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  RNBackgroundFetch:
+    :path: "../node_modules/react-native-background-fetch"
+  RNBackgroundGeolocation:
+    :path: "../node_modules/react-native-background-geolocation"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   yoga:
@@ -243,6 +258,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  CocoaLumberjack: cffaa70a9336515228178e3669b71bd49d343850
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   Firebase: b48f9e653da971ecce5b8c749684bc8bb2d26bd3
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
@@ -268,9 +284,11 @@ SPEC CHECKSUMS:
   react-native-google-maps: b946d62e25dc66097921ed82520e45b0b081768a
   react-native-image-picker: f42de90075c5b1af53417af927631d909a1a746e
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
+  RNBackgroundFetch: 8c4f77f83c398c659bce82af2f0a885079417b9e
+  RNBackgroundGeolocation: c9bbf69b9aa277f0b46754cc5f853bd26051a18f
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: b83b1c5ad7caf7b1f65fbb50e1c6e788950a7e1a
+PODFILE CHECKSUM: 6b3d703e84dfc6d1c41db6668c6ec5c73a10d4cf
 
 COCOAPODS: 1.6.0.beta.1

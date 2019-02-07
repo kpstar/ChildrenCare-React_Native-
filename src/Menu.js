@@ -4,16 +4,42 @@ import {Colors, Images, FontSizes} from './theme';
 import { Container, Content, Button, Icon, Form, Item, Label, Input, Text, List, ListItem} from 'native-base';
 import { strings } from './services/i18n';
 import firebase from 'react-native-firebase';
+import ImagePicker from 'react-native-image-picker';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 
 export default class Menu extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            avatarSource: null,
+        };
+    }
+
     goto(key){
         this.props.navigation.navigate(key)
     }
 
     onProfileClick() {
-        
+        ImagePicker.showImagePicker(null, (response) => {
+            console.log('Response = ', response);
+          
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('ImagePicker Error: ', response.error);
+            } else {
+              const source = { uri: response.uri };
+          
+              // You can also display the image using data:
+              // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+          
+              this.setState({
+                avatarSource: source,
+              });
+            }
+        });
     }
 
     render() {
@@ -24,7 +50,7 @@ export default class Menu extends Component {
                     <View style={styles.logo}>
                         <TouchableOpacity onPress={this.onProfileClick.bind(this)}>
                             <Image
-                                source={Images.profile}
+                                source={this.state.avatarSource?this.state.avatarSource:Images.profile}
                                 style={{width: 120, height: 120, resizeMode: 'cover', borderRadius: 60}}
                             />
                         </TouchableOpacity>
@@ -37,6 +63,9 @@ export default class Menu extends Component {
                         <ListItem onPress={()=>{this.goto('MapScreenStack')}}>
                             <Text style={styles.listItem}>{strings('drawer_menu_map.value')}</Text>
                         </ListItem>
+                        {/* <ListItem onPress={()=>{this.goto('MapScreenStack')}}>
+                            <Text style={styles.listItem}>{strings('drawer_menu_phone_number.value')}</Text>
+                        </ListItem> */}
                         <ListItem onPress={()=>{
                             Alert.alert(
                                 strings('drawer_menu_logout_title.value'),

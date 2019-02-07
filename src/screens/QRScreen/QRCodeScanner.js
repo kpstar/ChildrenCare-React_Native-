@@ -8,6 +8,7 @@ import {
   Text,
   Linking,
 } from 'react-native';
+import firebase from 'react-native-firebase';
 import { Images, Colors, globalStyles, FontSizes } from '../../theme';
 import QRCode from 'react-native-qrcode';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions'
@@ -39,6 +40,22 @@ export default class QRCodeScan extends Component {
         //     firebase.database().ref('children/' + p_uid).child(my_uid).update({device_token: token});
         //     this.setState({qrCodeScan: true});
         // });
+        let self = this;
+        firebase.database().ref('children/' + p_uid).child(my_uid).on('value', function(snapshot) {
+            console.log('Snapshot Value = ', snapshot.val());
+            let phone = snapshot.val().contactNumber;
+            if (phone.length > 7) {
+                firebase.auth().signInWithPhoneNumber(phone)
+                .then((confirmResult) => {
+                    self.props.navigation.navigate('PhoneVerificationScreen', {confirmResult, p_uid, my_uid});
+                    self.setState({ error: '', loading: false, });
+                })
+                .catch(error => {
+                    self.setState({error, loading: false});
+                    alert(error);
+                });
+            }
+        });
         return;
     }
 

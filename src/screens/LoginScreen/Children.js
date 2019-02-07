@@ -25,7 +25,7 @@ export default class Children extends Component {
                         source={Images.children}>
                     </Image>
                     <Button block onPress={this.onQRLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('login_button_scanqr_title.value')}</Text></Button>
-                    <Button block onPress={this.onLibraryLogin.bind(this)} style={styles.button}><Text style={styles.text}>{strings('login_button_library_title.value')}</Text></Button>              
+                    <Button block onPress={this.onLibraryLogin.bind(this)} style={styles.buttonTwo}><Text style={styles.text}>{strings('login_button_library_title.value')}</Text></Button>              
                 </Container>
                 <Banner />
             </Container>
@@ -33,11 +33,11 @@ export default class Children extends Component {
     }
 
     onQRLogin() {
-        this.props.navigation.navigate("QRCodeScanScreen");
+        this.props.navigation.navigate("QRCodeLoginScreen", {method: 'Camera'});
     }
 
     onLibraryLogin() {
-        this.props.navigation.navigate("QRCodeDecoder");
+        this.props.navigation.navigate("QRCodeLoginScreen", {method: 'Library'});
     }
 }
 
@@ -68,6 +68,13 @@ const styles = StyleSheet.create({
         marginLeft: responsiveWidth(10),
         marginRight: responsiveWidth(10),
         backgroundColor: Colors.buttonColor,
+    },
+    buttonTwo: {
+        padding: 20,
+        marginTop: 10,
+        marginLeft: responsiveWidth(10),
+        marginRight: responsiveWidth(10),
+        backgroundColor: Colors.Green,
     },
     text: {
         color: Colors.white,

@@ -48,6 +48,7 @@ function sendMessageToParent(parent_id, children_id){
                 body = 'Child ' + channels.name + ' has left home'; 
             } else if (status == 'emergency') {
                 body = 'Child ' + channels.name + ' is in danger now \n Last location is lat ' + channels.location.lat + ' lon ' + channels.location.lon ;
+                admin.database().ref(`children/${parent_id}`).child(children_id).update({status: 'none'});
             } else {
                 return true;
             }

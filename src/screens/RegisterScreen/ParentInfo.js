@@ -3,6 +3,7 @@ import {
   StyleSheet,
   ImageBackground,
   Text,
+  TextInput,
   AsyncStorage,
 } from 'react-native';
 import { Images, Colors, FontSizes } from '../../theme';
@@ -34,6 +35,10 @@ export default class ParentInfo  extends Component {
             else {
                 this.setState({uid, familyName:'', loading: false});
             }
+        }).catch((err) => {
+            alert(err);
+            this.setState({loading: false});
+            this.props.navigation.goBack();
         });        
     }
 
@@ -49,16 +54,24 @@ export default class ParentInfo  extends Component {
                 <ImageBackground source={Images.parent}  style={styles.image}></ImageBackground>
                 <Item floatingLabel style={styles.label}>
                     <Label style={styles.labelText}>{strings('parent_family_name_placeholder_title.value')}</Label>
-                    <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.familyName} onChangeText={(text) => {
+                    <Input onFocus={this.onFocus} autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.familyName} onChangeText={(text) => {
                         this.setState({familyName: text});
                         firebase.database().ref('parents/').child(this.state.uid).update({family_name: text});
                     }}/>                
                 </Item>
+                {/* <TextInput style={styles.input} value={this.state.familyName} onChangeText={(text) => {
+                        this.setState({familyName: text});
+                        firebase.database().ref('parents/').child(this.state.uid).update({family_name: text});
+                    }} placeholder={strings('parent_family_name_placeholder_title.value')}/> */}
                 <Button style={styles.button} onPress={this.setMyHome.bind(this)}><Text style={styles.text}>{strings('parent_set_home_button_title.value')}</Text></Button>
                 <ImageBackground source={Images.children}  style={styles.imageTwo}></ImageBackground>
                 <Button style={styles.buttonTwo} onPress={this.addMyChildren.bind(this)}><Text style={styles.text}>{strings('parent_add_children_button_title.value')}</Text></Button>
             </Container>
         )
+    }
+
+    onFocus() {
+        
     }
 
     addMyChildren() {
@@ -99,7 +112,7 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     label: {
-        width: responsiveWidth(80),
+        width: responsiveWidth(76),
     },
     labelText: {
         color: Colors.white,
@@ -129,6 +142,8 @@ const styles = StyleSheet.create({
     },
     input: {
         color: Colors.white,
+        // width: responsiveWidth(80),
+        // fontSize: FontSizes.medium,
     },
     spinnerTextStyle: {
         color: Colors.white,

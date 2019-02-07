@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -50,18 +50,24 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Play using while you are hiking</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>To send information via bluetooth</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>To get information from calendar</string>
 	<key>NSCameraUsageDescription</key>
 	<string>To get child information from QRCode</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>To get children's location and background tracking.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Background tracking required</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To get location of me and children</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>To get information from microphone</string>
 	<key>NSMotionUsageDescription</key>
-	<string>To get user's motion information</string>
+	<string>Accelerometer use increase battery efficiency by intelligently toggling location-tracking</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>To get image and QRCode from gallery</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -87,6 +93,9 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
+		<string>fetch</string>
+		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

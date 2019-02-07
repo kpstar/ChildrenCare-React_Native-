@@ -6,7 +6,7 @@ target 'ChindrenCare' do
   # use_frameworks!
 
   # Pods for ChindrenCare
-  platform :ios, '9.0'
+  platform :ios, '8.0'
 
   rn_path = '../node_modules/react-native'
   rn_maps_path = '../node_modules/react-native-maps'
@@ -56,6 +56,10 @@ target 'ChindrenCare' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
+  pod 'RNBackgroundGeolocation', :path => '../node_modules/react-native-background-geolocation'
+
+  pod 'RNBackgroundFetch', :path => '../node_modules/react-native-background-fetch'
+
   target 'ChindrenCareTests' do
     inherit! :search_paths
     # Pods for testing
@@ -83,10 +87,7 @@ post_install do |installer|
         config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
       end
     end
-    # if target.name == "React"
-    #   target.remove_from_project
-    # end
-    targets_to_ignore = %w(React yoga)
+    targets_to_ignore = %w(React yoga CocoaLumberjack)
       if targets_to_ignore.include? target.name
         target.remove_from_project
       end

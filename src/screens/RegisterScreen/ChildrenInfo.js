@@ -4,6 +4,7 @@ import {
   ImageBackground,
   Text,
   View,
+  KeyboardAvoidingView,
   AsyncStorage
 } from 'react-native';
 import { Images, Colors, globalStyles } from '../../theme';
@@ -32,24 +33,26 @@ export default class ChildrenInfo extends Component {
 
     render() {
         return (
-            <Container style={styles.container}>
-                <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
-                <BackButton onPress={()=>this.props.navigation.goBack()}/>
-                <ImageBackground source={Images.children}  style={styles.image}></ImageBackground>
-                <Item floatingLabel style={styles.label}>
-                    <Label style={styles.text}>{strings('child_name_label_placeholder_title.value')}</Label>
-                    <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.childName} onChangeText={childNameTxt=>this.setState({childName: childNameTxt})}/>                
-                </Item>
-                <Item floatingLabel style={styles.label1}>
-                    <Label style={styles.text}>{strings('child_age_label_placeholder_title.value')}</Label>
-                    <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.age} onChangeText={ageTxt=>this.setState({age: ageTxt})}/>                
-                </Item>
-                <Item floatingLabel style={styles.label1}>
-                    <Label style={styles.text}>{strings('child_contact_number_label_placeholder_title.value')}</Label>
-                    <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.contactNumber} onChangeText={contactNumberTxt=>this.setState({contactNumber: contactNumberTxt})}/>                
-                </Item>
-                <Button style={styles.button} onPress={this.generateQR.bind(this)}><Text style={styles.text}>{strings('child_generate_qr_button_title.value')}</Text></Button>
-            </Container>
+            <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
+                <Container style={styles.container}>
+                    <ImageBackground source={Images.background}  style={styles.imageBk} ></ImageBackground>
+                    <BackButton onPress={()=>this.props.navigation.goBack()}/>
+                    <ImageBackground source={Images.children}  style={styles.image}></ImageBackground>
+                    <Item floatingLabel style={styles.label}>
+                        <Label style={styles.text}>{strings('child_name_label_placeholder_title.value')}</Label>
+                        <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.childName} onChangeText={childNameTxt=>this.setState({childName: childNameTxt})}/>                
+                    </Item>
+                    <Item floatingLabel style={styles.label1}>
+                        <Label style={styles.text}>{strings('child_age_label_placeholder_title.value')}</Label>
+                        <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.age} onChangeText={ageTxt=>this.setState({age: ageTxt})}/>                
+                    </Item>
+                    <Item floatingLabel style={styles.label1}>
+                        <Label style={styles.text}>{strings('child_contact_number_label_placeholder_title.value')}</Label>
+                        <Input autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.contactNumber} onChangeText={contactNumberTxt=>this.setState({contactNumber: contactNumberTxt})}/>                
+                    </Item>
+                    <Button style={styles.button} onPress={this.generateQR.bind(this)}><Text style={styles.text}>{strings('child_generate_qr_button_title.value')}</Text></Button>
+                </Container>
+            </KeyboardAvoidingView>
         )
     }
 

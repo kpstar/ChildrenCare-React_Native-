@@ -28,10 +28,10 @@ export default class PhoneLoginScreen extends Component {
   onPhoneLogin() {
     const { phoneNumber } = this.state;
     this.setState({ error: '', loading: true, });
-    let emailUid = firebase.auth().currentUser.uid;
+    let p_uid = firebase.auth().currentUser.uid;
     firebase.auth().signInWithPhoneNumber(phoneNumber)
       .then((confirmResult) => {
-        this.props.navigation.navigate('PhoneVerificationScreen', {confirmResult, emailUid});
+        this.props.navigation.navigate('PhoneVerificationScreen', {confirmResult, p_uid});
         this.setState({ error: '', loading: false, });
       })
       .catch(error => {
@@ -52,6 +52,7 @@ export default class PhoneLoginScreen extends Component {
                   </Image>
                   <View style={styles.view}>
                     <PhoneInput ref='phone'
+                      data={this.state.phoneNumber}
                       onChangePhoneNumber={(number) => this.setState({phoneNumber: number})}
                       textStyle={styles.input} />
                   </View>  

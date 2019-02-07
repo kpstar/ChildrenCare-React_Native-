@@ -16,31 +16,43 @@ export default class PhoneVerificationScreen extends Component {
       phone: '',
       user: null,
       confirmResult: null,
-      emailUid: '',
+      p_uid: '',
+      my_uid: '',
     };
   }
 
   componentDidMount() {
     let {navigation} = this.props;
     let confirmResult = navigation.getParam('confirmResult', null);
-    let emailUid = navigation.getParam('emailUid', null);
-    this.setState({confirmResult, emailUid});
+    let p_uid = navigation.getParam('p_uid', null);
+    let my_uid = navigation.getParam('my_uid', null);
+    this.setState({confirmResult, p_uid, my_uid});
   }
 
   confirmCode = (code) => {
-    const { confirmResult, emailUid } = this.state;
+    let self = this;
+    const { confirmResult, p_uid, my_uid } = this.state;
     if (confirmResult) {
       confirmResult.confirm(code)
         .then((user) => {
+          if (my_uid) {
+            self.props.navigation.navigate('ChildMapScreen', {p_uid, my_uid});
+            firebase.auth().signOut();
+            return;
+          }
           let token = AsyncStorage.getItem('device_token')
           .then(token=>{
-              firebase.database().ref('parents/').child(emailUid).update({device_token: token, phone: user.phoneNumber})
+              firebase.database().ref('parents/').child(p_uid).update({device_token: token, phone: user.phoneNumber})
               .then((data)=>{
                   console.log('Update', data);
               });
           });
         })
-        .catch(error => alert(error));
+        .catch((error) => {
+          alert(error);
+          self.props.navigation.goBack();
+          self.ref.codeInputRef1.clear();
+        });
     }
   };
 
