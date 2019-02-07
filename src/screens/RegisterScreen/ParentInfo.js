@@ -52,17 +52,17 @@ export default class ParentInfo  extends Component {
                     textStyle={styles.spinnerTextStyle}
                 />
                 <ImageBackground source={Images.parent}  style={styles.image}></ImageBackground>
-                <Item floatingLabel style={styles.label}>
+                {/* <Item floatingLabel style={styles.label}>
                     <Label style={styles.labelText}>{strings('parent_family_name_placeholder_title.value')}</Label>
                     <Input onFocus={this.onFocus} autoCapitalize='none' autoCorrect={false} style={styles.input} value={this.state.familyName} onChangeText={(text) => {
                         this.setState({familyName: text});
                         firebase.database().ref('parents/').child(this.state.uid).update({family_name: text});
                     }}/>                
-                </Item>
-                {/* <TextInput style={styles.input} value={this.state.familyName} onChangeText={(text) => {
+                </Item> */}
+                <TextInput style={styles.input} value={this.state.familyName} onChangeText={(text) => {
                         this.setState({familyName: text});
                         firebase.database().ref('parents/').child(this.state.uid).update({family_name: text});
-                    }} placeholder={strings('parent_family_name_placeholder_title.value')}/> */}
+                    }} placeholder={strings('parent_family_name_placeholder_title.value')}/>
                 <Button style={styles.button} onPress={this.setMyHome.bind(this)}><Text style={styles.text}>{strings('parent_set_home_button_title.value')}</Text></Button>
                 <ImageBackground source={Images.children}  style={styles.imageTwo}></ImageBackground>
                 <Button style={styles.buttonTwo} onPress={this.addMyChildren.bind(this)}><Text style={styles.text}>{strings('parent_add_children_button_title.value')}</Text></Button>
@@ -142,8 +142,8 @@ const styles = StyleSheet.create({
     },
     input: {
         color: Colors.white,
-        // width: responsiveWidth(80),
-        // fontSize: FontSizes.medium,
+        width: responsiveWidth(80),
+        fontSize: FontSizes.medium,
     },
     spinnerTextStyle: {
         color: Colors.white,
